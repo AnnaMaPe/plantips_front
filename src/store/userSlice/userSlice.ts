@@ -15,7 +15,11 @@ export const userSlice = createSlice({
     loginUser: (
       currentUserState: UserState,
       action: PayloadAction<User>
-    ): UserState => ({ ...action.payload, isLogged: true }),
+    ): UserState => ({
+      ...currentUserState,
+      username: action.payload.username,
+      isLogged: true,
+    }),
   },
 });
 
