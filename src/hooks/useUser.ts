@@ -3,7 +3,7 @@ import { useAppDispatch } from "../store/hooks";
 import { loginUserActionCreator } from "../store/userSlice/userSlice";
 import {
   CustomTokenPayload,
-  Loginresponse,
+  LoginResponse,
   UserCredentials,
   UseUserStructure,
 } from "./types";
@@ -19,7 +19,7 @@ export const useUser = (): UseUserStructure => {
       headers: { "Content-type": "applications/json" },
     });
 
-    const { token }: Loginresponse = await response.json();
+    const { token }: LoginResponse = await response.json();
 
     const tokenPayload: CustomTokenPayload = decodeToken(token);
 

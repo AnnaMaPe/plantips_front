@@ -7,12 +7,11 @@ export interface UseUserStructure {
   loginUser: (userCredentials: UserCredentials) => Promise<void>;
 }
 
-export interface Loginresponse {
+export interface LoginResponse {
   token: string;
 }
 
 export interface CustomTokenPayload {
   id: string;
   username: string;
-  password: string;
 }
