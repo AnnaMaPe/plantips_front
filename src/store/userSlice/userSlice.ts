@@ -17,7 +17,7 @@ export const userSlice = createSlice({
       action: PayloadAction<User>
     ): UserState => ({
       ...currentUserState,
-      username: action.payload.username,
+      ...action.payload,
       isLogged: true,
     }),
   },
