@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { renderWithProvider } from "../../test.utils/renderWithProviders";
+import { renderWithProviders } from "../../test.utils/renderWithProviders";
 import { LoginForm } from "./LoginForm";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../styles/theme";
@@ -9,7 +9,7 @@ describe("Given a LoginForm component", () => {
     test("Then it should show a button with the text 'Sign up'", () => {
       const expectedTest = /log in/i;
 
-      renderWithProvider(
+      renderWithProviders(
         <ThemeProvider theme={theme}>
           <LoginForm />
         </ThemeProvider>
@@ -22,7 +22,7 @@ describe("Given a LoginForm component", () => {
     test("The it should show an input with a placeholder with the text 'username'", () => {
       const expectedTest = /username/i;
 
-      renderWithProvider(
+      renderWithProviders(
         <ThemeProvider theme={theme}>
           <LoginForm />
         </ThemeProvider>

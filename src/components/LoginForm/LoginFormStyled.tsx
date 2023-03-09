@@ -8,11 +8,6 @@ export const LoginFomrStyled = styled.form`
   gap: 22px;
 
   .form {
-    &__button {
-      width: 220px;
-      height: 60px;
-      font-size: 20px;
-    }
     &__field {
       border-radius: ${(props) => props.theme.inputs.borderRadius};
       min-width: 90vw;
@@ -24,9 +19,6 @@ export const LoginFomrStyled = styled.form`
       font-weight: 400;
       font-size: inherit;
       border: none;
-    }
-    &__button {
-      background-color: ${(props) => props.theme.palette.primary};
     }
   }
 `;
