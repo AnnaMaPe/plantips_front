@@ -9,7 +9,7 @@ import {
 } from "./types";
 
 export const useUser = (): UseUserStructure => {
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = process.env.REACT_APP_URL_API;
   const dispatch = useAppDispatch();
 
   const loginUser = async (userCredentials: UserCredentials) => {
