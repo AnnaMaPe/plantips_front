@@ -25,6 +25,8 @@ button {
   font-family: inherit;
   font-size: inherit;
   background-color: transparent;
+  border-radius: 50px;
+  color: #fff
 }
 `;
 
