@@ -1,3 +1,4 @@
+import { Button } from "../Button/Button";
 import { LoginFomrStyled } from "./LoginFormStyled";
 
 export const LoginForm = (): JSX.Element => {
@@ -20,7 +21,8 @@ export const LoginForm = (): JSX.Element => {
         ></input>
       </div>
       <img src="../logoBig.webp" alt="Plantip logo" width={100} height={100} />
-      <button className="form__button">Log in</button>
+      <button>Log in</button>
+      <Button isDisabled={false} text="Sign up"></Button>
     </LoginFomrStyled>
   );
 };
