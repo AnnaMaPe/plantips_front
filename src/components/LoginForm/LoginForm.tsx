@@ -1,29 +1,26 @@
+import { LoginFomrStyled } from "./LoginFormStyled";
+
 export const LoginForm = (): JSX.Element => {
   return (
-    <form action="" className="form">
+    <LoginFomrStyled className="form">
       <div className="form-information">
-        <label className="form__label" htmlFor="username">
-          Username
-        </label>
         <input
-          className="form__input"
+          className="form__field"
           type="text"
-          placeholder="email"
+          placeholder="Username"
           autoComplete="off"
         ></input>
       </div>
       <div>
-        <label className="form__label" htmlFor="password">
-          Password
-        </label>
         <input
-          className="form__input"
+          className="form__field"
           type="password"
-          placeholder="email"
+          placeholder="Password"
           autoComplete="off"
         ></input>
-        <button className="form-button">Log in</button>
       </div>
-    </form>
+      <img src="../logoBig.webp" alt="Plantip logo" width={100} height={100} />
+      <button className="form__button">Log in</button>
+    </LoginFomrStyled>
   );
 };

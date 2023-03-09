@@ -8,6 +8,10 @@ const GlobalStyles = createGlobalStyle`
   box-sizing: border-box
 }
 
+body {
+  margin: 0px;
+}
+
 ul, 
 ol {
   list-style: none;
@@ -26,7 +30,15 @@ button {
   font-size: inherit;
   background-color: transparent;
   border-radius: 50px;
-  color: #fff
+  border: none;
+  color: #fff;
+  background-color: ${(props) => props.theme.palette.primary};
+  
+  
+}
+
+.container {
+  margin: 20px 
 }
 `;
 
