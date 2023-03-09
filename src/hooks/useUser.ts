@@ -16,7 +16,7 @@ export const useUser = (): UseUserStructure => {
     const response = await fetch(`${apiUrl}/users/login`, {
       method: "POST",
       body: JSON.stringify(userCredentials),
-      headers: { "Content-type": "applications/json" },
+      headers: { "Content-type": "application/json" },
     });
 
     const { token }: LoginResponse = await response.json();
@@ -26,6 +26,8 @@ export const useUser = (): UseUserStructure => {
     const { id, username } = tokenPayload;
 
     dispatch(loginUserActionCreator({ id, username, token }));
+
+    localStorage.setItem("token", token);
   };
 
   return { loginUser };
