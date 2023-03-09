@@ -1,4 +1,7 @@
 import { createGlobalStyle } from "styled-components";
+import "../../node_modules/@fontsource/quicksand/400.css";
+import "../../node_modules/@fontsource/inter/400.css";
+import "../../node_modules/@fontsource/inter/700.css";
 
 const GlobalStyles = createGlobalStyle`
 
@@ -6,6 +9,10 @@ const GlobalStyles = createGlobalStyle`
 ::before,
 ::after {
   box-sizing: border-box
+}
+
+body {
+  margin: 0px;
 }
 
 ul, 
@@ -26,7 +33,13 @@ button {
   font-size: inherit;
   background-color: transparent;
   border-radius: 50px;
-  color: #fff
+  border: none;
+  color: #fff;
+  
+}
+
+.container {
+  margin: 20px 
 }
 `;
 
