@@ -16,7 +16,7 @@ const setupStore = (preloadedState?: PreloadedState<RootState>) => {
   return configureStore({ reducer: rootReducer, preloadedState });
 };
 
-export const renderWithProvider = (
+export const renderWithProviders = (
   ui: React.ReactElement,
   preloadedState?: PreloadedState<RootState>
 ) => {

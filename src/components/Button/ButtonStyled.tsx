@@ -5,6 +5,7 @@ export const ButtonStyled = styled.button`
   width: 220px;
   height: 60px;
   font-size: 20px;
+  cursor: pointer;
 
   :disabled {
     opacity: 50%;
