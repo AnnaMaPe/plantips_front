@@ -1,4 +1,7 @@
 import { createGlobalStyle } from "styled-components";
+import "../../node_modules/@fontsource/quicksand/400.css";
+import "../../node_modules/@fontsource/inter/400.css";
+import "../../node_modules/@fontsource/inter/700.css";
 
 const GlobalStyles = createGlobalStyle`
 
@@ -32,8 +35,6 @@ button {
   border-radius: 50px;
   border: none;
   color: #fff;
-  background-color: ${(props) => props.theme.palette.primary};
-  
   
 }
 

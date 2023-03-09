@@ -1,6 +1,3 @@
-import "../../node_modules/@fontsource/quicksand/400.css";
-import "../../node_modules/@fontsource/inter/400.css";
-import "../../node_modules/@fontsource/inter/700.css";
 import DefaultTheme from "./styled";
 
 export const theme: DefaultTheme = {

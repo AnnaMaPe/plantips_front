@@ -25,5 +25,8 @@ export const LoginFomrStyled = styled.form`
       font-size: inherit;
       border: none;
     }
+    &__button {
+      background-color: ${(props) => props.theme.palette.primary};
+    }
   }
 `;
