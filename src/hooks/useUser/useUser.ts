@@ -1,6 +1,6 @@
 import decodeToken from "jwt-decode";
-import { useAppDispatch } from "../store/hooks";
-import { loginUserActionCreator } from "../store/userSlice/userSlice";
+import { useAppDispatch } from "../../store/hooks";
+import { loginUserActionCreator } from "../../store/userSlice/userSlice";
 import {
   CustomTokenPayload,
   LoginResponse,
@@ -8,8 +8,9 @@ import {
   UseUserStructure,
 } from "./types";
 
-export const useUser = (): UseUserStructure => {
+const useUser = (): UseUserStructure => {
   const apiUrl = process.env.REACT_APP_URL_API;
+
   const dispatch = useAppDispatch();
 
   const loginUser = async (userCredentials: UserCredentials) => {
@@ -32,3 +33,5 @@ export const useUser = (): UseUserStructure => {
 
   return { loginUser };
 };
+
+export default useUser;

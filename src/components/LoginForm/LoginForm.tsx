@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { useUser } from "../../hooks/useUser";
+import useUser from "../../hooks/useUser/useUser";
 import { Button } from "../Button/Button";
 import { LoginFormStyled } from "./LoginFormStyled";
 
 export const LoginForm = (): JSX.Element => {
   const { loginUser } = useUser();
-
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
