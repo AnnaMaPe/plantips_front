@@ -25,6 +25,8 @@ export const LoginForm = (): JSX.Element => {
     await loginUser(loginData);
   };
 
+  const isDisabled = loginData.username === "" || loginData.password === "";
+
   return (
     <LoginFormStyled className="form" onSubmit={onSubmitHandler}>
       <input
@@ -46,7 +48,7 @@ export const LoginForm = (): JSX.Element => {
         onChange={handleLoginDataChange}
       />
       <img src="../logoBig.webp" alt="Plantip logo" width={100} height={100} />
-      <Button isDisabled={true} text="Log in" />
+      <Button isDisabled={isDisabled} text="Log in" />
     </LoginFormStyled>
   );
 };
