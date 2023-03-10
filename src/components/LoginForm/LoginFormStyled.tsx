@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LoginFomrStyled = styled.form`
+export const LoginFormStyled = styled.form`
   font-family: ${(props) => props.theme.fonts.text};
   display: flex;
   flex-direction: column;
