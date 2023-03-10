@@ -2,7 +2,7 @@ import { UserState } from "./types";
 import { loginUserActionCreator, userReducer } from "./userSlice";
 
 describe("Given a userReducer reducer", () => {
-  describe("When it receives a user that is not logged and the loginUser action", () => {
+  describe("When it receives an user that is not logged and the loginUser action", () => {
     test("Then it should return the same user but logged in", () => {
       const userInitialState: UserState = {
         id: "1234",
