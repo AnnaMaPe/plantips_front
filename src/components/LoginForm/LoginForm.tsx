@@ -3,7 +3,7 @@ import useUser from "../../hooks/useUser/useUser";
 import { Button } from "../Button/Button";
 import { LoginFormStyled } from "./LoginFormStyled";
 
-export const LoginForm = (): JSX.Element => {
+const LoginForm = (): JSX.Element => {
   const { loginUser } = useUser();
   const [loginData, setLoginData] = useState({
     username: "",
@@ -52,3 +52,5 @@ export const LoginForm = (): JSX.Element => {
     </LoginFormStyled>
   );
 };
+
+export default LoginForm;
