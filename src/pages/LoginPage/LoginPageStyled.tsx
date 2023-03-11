@@ -6,7 +6,7 @@ const LoginPageStyled = styled.div`
   color: ${(props) => props.theme.palette.primary};
   font-family: ${(props) => props.theme.fonts.text};
   font-size: 20px;
-  gap: 15px;
+  gap: 10px;
   text-align: center;
   font-weight: 400;
 
