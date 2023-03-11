@@ -10,16 +10,24 @@ import {
 
 const useUser = (): UseUserStructure => {
   const apiUrl = process.env.REACT_APP_URL_API;
+  const loginEndpoint = "/users/login";
 
   const dispatch = useAppDispatch();
 
   const loginUser = async (userCredentials: UserCredentials) => {
-    const response = await fetch(`${apiUrl}/users/login`, {
+    const response = await fetch(`${apiUrl}${loginEndpoint}`, {
       method: "POST",
       body: JSON.stringify(userCredentials),
       headers: { "Content-type": "application/json" },
     });
 
+    if (!response.ok) {
+      const wrongCredentials = "Wrong credentials";
+
+      const wrongCredentialsError = new Error(wrongCredentials);
+
+      throw wrongCredentialsError;
+    }
     const { token }: LoginResponse = await response.json();
 
     const tokenPayload: CustomTokenPayload = decodeToken(token);
