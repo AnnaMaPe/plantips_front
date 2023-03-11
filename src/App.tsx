@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Modal } from "./components/Modal/Modal";
+import Modal from "./components/Modal/Modal";
 import { useAppSelector } from "./store/hooks";
 
 const App = () => {
