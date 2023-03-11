@@ -28,6 +28,10 @@ a:visited {
   text-decoration: none;
 }
 
+h1, h2, h3{
+  margin: 0;
+}
+
 button {
   font-family: inherit;
   font-size: inherit;

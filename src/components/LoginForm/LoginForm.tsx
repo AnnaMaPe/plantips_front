@@ -3,7 +3,7 @@ import useUser from "../../hooks/useUser/useUser";
 import { Button } from "../Button/Button";
 import { LoginFormStyled } from "./LoginFormStyled";
 
-export const LoginForm = (): JSX.Element => {
+const LoginForm = (): JSX.Element => {
   const { loginUser } = useUser();
   const [loginData, setLoginData] = useState({
     username: "",
@@ -47,8 +47,15 @@ export const LoginForm = (): JSX.Element => {
         aria-label="password"
         onChange={handleLoginDataChange}
       />
-      <img src="../logoBig.webp" alt="Plantip logo" width={100} height={100} />
+      <img
+        src="../images/logoBig.webp"
+        alt="Plantip logo"
+        width={100}
+        height={100}
+      />
       <Button isDisabled={isDisabled} text="Log in" />
     </LoginFormStyled>
   );
 };
+
+export default LoginForm;

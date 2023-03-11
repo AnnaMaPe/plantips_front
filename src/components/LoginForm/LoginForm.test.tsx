@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import { renderWithProviders } from "../../test.utils/renderWithProviders";
-import { LoginForm } from "./LoginForm";
+import LoginForm from "./LoginForm";
 import userEvent from "@testing-library/user-event";
 import { UserCredentials } from "../../hooks/useUser/types";
 
