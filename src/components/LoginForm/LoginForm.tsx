@@ -47,7 +47,12 @@ const LoginForm = (): JSX.Element => {
         aria-label="password"
         onChange={handleLoginDataChange}
       />
-      <img src="../logoBig.webp" alt="Plantip logo" width={100} height={100} />
+      <img
+        src="../images/logoBig.webp"
+        alt="Plantip logo"
+        width={100}
+        height={100}
+      />
       <Button isDisabled={isDisabled} text="Log in" />
     </LoginFormStyled>
   );
