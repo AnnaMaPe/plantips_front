@@ -6,5 +6,6 @@ export const showErrorModal = (message: string) => {
     position: "top-center",
     closeOnClick: true,
     className: "toast-error",
+    closeButton: false,
   });
 };

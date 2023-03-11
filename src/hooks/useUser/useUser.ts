@@ -7,6 +7,7 @@ import {
   UserCredentials,
   UseUserStructure,
 } from "./types";
+import { showErrorModal } from "../../modals/modals";
 
 const useUser = (): UseUserStructure => {
   const apiUrl = process.env.REACT_APP_URL_API;
@@ -15,30 +16,34 @@ const useUser = (): UseUserStructure => {
   const dispatch = useAppDispatch();
 
   const loginUser = async (userCredentials: UserCredentials) => {
-    const response = await fetch(`${apiUrl}${loginEndpoint}`, {
-      method: "POST",
-      body: JSON.stringify(userCredentials),
-      headers: { "Content-type": "application/json" },
-    });
+    try {
+      const response = await fetch(`${apiUrl}${loginEndpoint}`, {
+        method: "POST",
+        body: JSON.stringify(userCredentials),
+        headers: { "Content-type": "application/json" },
+      });
 
-    if (!response.ok) {
-      const wrongCredentials = "Wrong credentials";
+      if (!response.ok) {
+        const wrongCredentials = "Wrong credentials";
 
-      const wrongCredentialsError = new Error(wrongCredentials);
+        const wrongCredentialsError = new Error(wrongCredentials);
 
-      throw wrongCredentialsError;
+        throw wrongCredentialsError;
+      }
+
+      const { token }: LoginResponse = await response.json();
+
+      const tokenPayload: CustomTokenPayload = decodeToken(token);
+
+      const { id, username } = tokenPayload;
+
+      dispatch(loginUserActionCreator({ id, username, token }));
+
+      localStorage.setItem("token", token);
+    } catch (error: unknown) {
+      showErrorModal((error as Error).message);
     }
-    const { token }: LoginResponse = await response.json();
-
-    const tokenPayload: CustomTokenPayload = decodeToken(token);
-
-    const { id, username } = tokenPayload;
-
-    dispatch(loginUserActionCreator({ id, username, token }));
-
-    localStorage.setItem("token", token);
   };
-
   return { loginUser };
 };
 
