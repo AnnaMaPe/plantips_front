@@ -6,6 +6,8 @@ import { render } from "@testing-library/react";
 import GlobalStyles from "../styles/GlobalStyles";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/theme";
+import { getComponentRouter, router } from "../routers/routes";
+import { RouterProvider } from "react-router-dom";
 
 export const renderWithProviders = (
   ui: React.ReactElement,
@@ -25,4 +27,16 @@ export const renderWithProviders = (
   };
 
   return render(ui, { wrapper: Wrapper });
+};
+
+export const renderRouterWithProviders = (
+  ui?: React.ReactElement,
+  preloadedState?: PreloadedState<RootState>
+) => {
+  const routerWithProvider = ui ? getComponentRouter(ui) : router;
+
+  return renderWithProviders(
+    <RouterProvider router={routerWithProvider}></RouterProvider>,
+    preloadedState
+  );
 };
