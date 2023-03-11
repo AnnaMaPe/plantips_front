@@ -6,6 +6,7 @@ const App = () => {
   const {
     modal: { message },
   } = useAppSelector((state) => state.ui);
+
   return (
     <div className="container">
       {message && <Modal />}

@@ -3,7 +3,7 @@ import {
   preloadedUiState,
 } from "../../mocks/uiPreloadedState";
 import { showErrorModal, showSuccessModal } from "../../modals/modals";
-import { renderWithProviders } from "../../test.utils/renderWithProviders";
+import { renderRouterWithProviders } from "../../test.utils/renderWithProviders";
 import Modal from "./Modal";
 
 jest.mock("../../modals/modals", () => ({
@@ -16,7 +16,7 @@ describe("Given a Modal component", () => {
     test("Then it should render the ToastContainer Component for error", () => {
       const expectedMessage = "Wrong credentials";
 
-      renderWithProviders(<Modal />, { ui: preloadedErrorUiState });
+      renderRouterWithProviders(<Modal />, { ui: preloadedErrorUiState });
 
       expect(showErrorModal).toHaveBeenCalledWith(expectedMessage);
     });
@@ -26,7 +26,7 @@ describe("Given a Modal component", () => {
     test("Then it should render the ToastContainer Component for error", () => {
       const expectedMessage = "You were successfully logedout!";
 
-      renderWithProviders(<Modal />, { ui: preloadedUiState });
+      renderRouterWithProviders(<Modal />, { ui: preloadedUiState });
 
       expect(showSuccessModal).toHaveBeenCalledWith(expectedMessage);
     });
