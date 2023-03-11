@@ -6,11 +6,10 @@ const App = () => {
   const {
     modal: { message },
   } = useAppSelector((state) => state.ui);
-
   return (
     <div className="container">
-      <Outlet />
       {message && <Modal />}
+      <Outlet />
     </div>
   );
 };

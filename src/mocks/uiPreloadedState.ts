@@ -1,14 +1,14 @@
 import { setupStore } from "../store";
 import { UiState } from "../store/features/ui/types";
 
-export const mockErrorUiState: UiState = {
+export const preloadedErrorUiState: UiState = {
   modal: { isError: true, message: "Wrong credentials" },
-  isLoading: true,
+  isLoading: false,
 };
 
-export const mockUiState: UiState = {
+export const preloadedUiState: UiState = {
   modal: { isError: false, message: "You were successfully logedout!" },
   isLoading: true,
 };
 
-export const mockUiStore = setupStore({ ui: mockUiState });
+export const mockUiStore = setupStore({ ui: preloadedUiState });
