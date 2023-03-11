@@ -7,7 +7,7 @@ import {
   UserCredentials,
   UseUserStructure,
 } from "./types";
-import { showErrorModal } from "../../modals/modals";
+import { openModalActionCreator } from "../../store/features/ui/uiSlice";
 
 const useUser = (): UseUserStructure => {
   const apiUrl = process.env.REACT_APP_URL_API;
@@ -41,7 +41,13 @@ const useUser = (): UseUserStructure => {
 
       localStorage.setItem("token", token);
     } catch (error: unknown) {
-      showErrorModal((error as Error).message);
+      const errorMessage = (error as Error).message;
+      dispatch(
+        openModalActionCreator({
+          isError: true,
+          message: errorMessage,
+        })
+      );
     }
   };
   return { loginUser };

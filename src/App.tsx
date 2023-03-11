@@ -1,11 +1,16 @@
 import { Outlet } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { Modal } from "./components/Modal/Modal";
+import { useAppSelector } from "./store/hooks";
 
 const App = () => {
+  const {
+    modal: { message },
+  } = useAppSelector((state) => state.ui);
+
   return (
     <div className="container">
-      <ToastContainer />
       <Outlet />
+      {message && <Modal />}
     </div>
   );
 };

@@ -9,3 +9,11 @@ export const showErrorModal = (message: string) => {
     closeButton: false,
   });
 };
+
+export const showSuccessModal = (message: string) => {
+  toast.success(message, {
+    position: "top-center",
+    closeOnClick: true,
+    className: "toast-success",
+  });
+};
