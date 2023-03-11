@@ -18,21 +18,12 @@ const uiSlice = createSlice({
       ...currentUiState,
       modal: {
         isError: action.payload.isError,
+
         message: action.payload.message,
-      },
-    }),
-    closeModal: (currentUiState): UiState => ({
-      ...currentUiState,
-      modal: {
-        message: "",
-        isError: false,
       },
     }),
   },
 });
 
 export const uiReducer = uiSlice.reducer;
-export const {
-  openModal: openModalActionCreator,
-  closeModal: closeModalActionCreator,
-} = uiSlice.actions;
+export const { openModal: openModalActionCreator } = uiSlice.actions;

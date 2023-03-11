@@ -7,30 +7,49 @@ import {
   UserCredentials,
   UseUserStructure,
 } from "./types";
+import { openModalActionCreator } from "../../store/features/ui/uiSlice";
 
 const useUser = (): UseUserStructure => {
   const apiUrl = process.env.REACT_APP_URL_API;
+  const loginEndpoint = "/users/login";
 
   const dispatch = useAppDispatch();
 
   const loginUser = async (userCredentials: UserCredentials) => {
-    const response = await fetch(`${apiUrl}/users/login`, {
-      method: "POST",
-      body: JSON.stringify(userCredentials),
-      headers: { "Content-type": "application/json" },
-    });
+    try {
+      const response = await fetch(`${apiUrl}${loginEndpoint}`, {
+        method: "POST",
+        body: JSON.stringify(userCredentials),
+        headers: { "Content-type": "application/json" },
+      });
 
-    const { token }: LoginResponse = await response.json();
+      if (!response.ok) {
+        const wrongCredentials = "Wrong credentials";
 
-    const tokenPayload: CustomTokenPayload = decodeToken(token);
+        const wrongCredentialsError = new Error(wrongCredentials);
 
-    const { id, username } = tokenPayload;
+        throw wrongCredentialsError;
+      }
 
-    dispatch(loginUserActionCreator({ id, username, token }));
+      const { token }: LoginResponse = await response.json();
 
-    localStorage.setItem("token", token);
+      const tokenPayload: CustomTokenPayload = decodeToken(token);
+
+      const { id, username } = tokenPayload;
+
+      dispatch(loginUserActionCreator({ id, username, token }));
+
+      localStorage.setItem("token", token);
+    } catch (error: unknown) {
+      const errorMessage = (error as Error).message;
+      dispatch(
+        openModalActionCreator({
+          isError: true,
+          message: errorMessage,
+        })
+      );
+    }
   };
-
   return { loginUser };
 };
 
