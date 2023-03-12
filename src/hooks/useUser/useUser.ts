@@ -54,6 +54,7 @@ const useUser = (): UseUserStructure => {
         openModalActionCreator({
           isError: true,
           message: errorMessage,
+          isSuccess: false,
         })
       );
     }
