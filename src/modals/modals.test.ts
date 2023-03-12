@@ -29,13 +29,14 @@ describe("Given the modals functions", () => {
     });
   });
 
-  describe("When showSuccessModal is called with a success message 'Everything's coming up Milhouse'", () => {
+  describe("When showSuccessModal is called with a success message 'You were successfully logged out!'", () => {
     test("Then its toast.success function should be called with the success message", () => {
-      const successMessage = "Everything's coming up Milhouse";
+      const successMessage = "You were successfully logged out!";
       const successOption = {
         position: "top-center",
         closeOnClick: true,
         className: "toast-success",
+        closeButton: false,
       };
 
       showSuccessModal(successMessage);
