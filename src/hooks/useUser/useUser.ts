@@ -7,7 +7,11 @@ import {
   UserCredentials,
   UseUserStructure,
 } from "./types";
-import { openModalActionCreator } from "../../store/features/ui/uiSlice";
+import {
+  openModalActionCreator,
+  setLoaderActioncreator,
+  unsetLoaderActionCreator,
+} from "../../store/features/ui/uiSlice";
 
 const useUser = (): UseUserStructure => {
   const apiUrl = process.env.REACT_APP_URL_API;
@@ -17,11 +21,15 @@ const useUser = (): UseUserStructure => {
 
   const loginUser = async (userCredentials: UserCredentials) => {
     try {
+      dispatch(setLoaderActioncreator());
+
       const response = await fetch(`${apiUrl}${loginEndpoint}`, {
         method: "POST",
         body: JSON.stringify(userCredentials),
         headers: { "Content-type": "application/json" },
       });
+
+      dispatch(unsetLoaderActionCreator());
 
       if (!response.ok) {
         const wrongCredentials = "Wrong credentials";
