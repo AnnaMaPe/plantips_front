@@ -1,4 +1,4 @@
-import { loadTipsActionCreator, tipsReducer } from "./tipsSlice";
+import { loadAllTipsActionCreator, tipsReducer } from "./tipsSlice";
 import { TipsFromApi } from "./types";
 import { monstera } from "../../../mocks/tipsMocks";
 
@@ -8,7 +8,7 @@ describe("Given a tipsReducer reducer", () => {
       const initialTipState: TipsFromApi = { tips: [] };
       const newTip = monstera;
 
-      const loadTipsAction = loadTipsActionCreator([newTip]);
+      const loadTipsAction = loadAllTipsActionCreator([newTip]);
       const result = tipsReducer(initialTipState, loadTipsAction);
       const updatedTipsList = {
         tips: [monstera],
