@@ -1,4 +1,8 @@
-import { TipStructure } from "../store/features/tips/types";
+import {
+  TipsFromApi,
+  TipsStructure,
+  TipStructure,
+} from "../store/features/tips/types";
 
 export const monstera: TipStructure = {
   commonName: "Monstera",
@@ -9,3 +13,6 @@ export const monstera: TipStructure = {
   tip: "Do not overwater it",
   image: "pretty_plant.jpg",
 };
+export const mockListOfTips: TipsStructure = [monstera];
+
+export const tipsFromApi: TipsFromApi = { tips: [monstera] };

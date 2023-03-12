@@ -1,9 +1,16 @@
 import { rest } from "msw";
-
-const apiUrl = process.env.REACT_APP_URL_API;
+import { endpoints } from "../routers/endpoints";
+import { tipsFromApi } from "./tipsMocks";
 
 export const handlers = [
-  rest.post(`${apiUrl}/plantips/login`, async (req, res, ctx) =>
-    res(ctx.status(200), ctx.json({ token: "ThisIsAToken" }))
+  rest.post(
+    `${process.env.REACT_APP_URL_API}${endpoints.plantips}${endpoints.login}`,
+    async (req, res, ctx) =>
+      res(ctx.status(200), ctx.json({ token: "ThisIsAToken" }))
+  ),
+
+  rest.get(
+    `${process.env.REACT_APP_URL_API}${endpoints.plantips}${endpoints.tips}`,
+    async (req, res, ctx) => res(ctx.status(200), ctx.json(tipsFromApi))
   ),
 ];
