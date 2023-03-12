@@ -22,9 +22,9 @@ describe("Given a Modal component", () => {
     });
   });
 
-  describe("When it is rendered with a non-error and the message 'You were successfully logedout!'", () => {
-    test("Then it should render the ToastContainer Component for error", () => {
-      const expectedMessage = "You were successfully logedout!";
+  describe("When it is rendered with a non-error and the message 'You were successfully logged out!'", () => {
+    test("Then it should render the ToastContainer Component for succes", () => {
+      const expectedMessage = "You were successfully logged out!";
 
       renderRouterWithProviders(<Modal />, { ui: preloadedUiState });
 
