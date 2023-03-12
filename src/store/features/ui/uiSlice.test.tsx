@@ -1,5 +1,6 @@
 import { ModalPayload, UiState } from "./types";
 import {
+  closeModalActionCreator,
   openModalActionCreator,
   setLoaderActioncreator,
   uiReducer,
@@ -64,6 +65,24 @@ describe("Given a uiReducer reducer", () => {
       const newUiState = uiReducer(uiInitialState, unsetLoaderAction);
 
       expect(newUiState).toStrictEqual(expectedUiState);
+    });
+  });
+  describe("When it is called with a closeModal action after showing a modal for an error with the text 'Wrong credentials'", () => {
+    test("Then it should hide the modal", () => {
+      const uiInitialState: UiState = {
+        isLoading: false,
+        modal: { isError: true, message: "Wrong credentials" },
+      };
+
+      const expectedNewState: UiState = {
+        isLoading: false,
+        modal: { isError: false, message: "" },
+      };
+
+      const closeModalAction = closeModalActionCreator();
+      const newUiState = uiReducer(uiInitialState, closeModalAction);
+
+      expect(newUiState).toStrictEqual(expectedNewState);
     });
   });
 });
