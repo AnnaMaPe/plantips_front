@@ -4,7 +4,7 @@ import { ModalPayload, UiState } from "./types";
 
 const uiInitialState: UiState = {
   isLoading: false,
-  modal: { isError: false, message: "" },
+  modal: { isError: false, message: "", isSuccess: false },
 };
 
 const uiSlice = createSlice({
@@ -19,6 +19,15 @@ const uiSlice = createSlice({
       modal: {
         isError: action.payload.isError,
         message: action.payload.message,
+        isSuccess: action.payload.isSuccess,
+      },
+    }),
+    closeModal: (currentUiState): UiState => ({
+      ...currentUiState,
+      modal: {
+        message: uiInitialState.modal.message,
+        isError: false,
+        isSuccess: false,
       },
     }),
     setLoader: (currentUiState): UiState => ({
@@ -35,6 +44,7 @@ const uiSlice = createSlice({
 export const uiReducer = uiSlice.reducer;
 export const {
   openModal: openModalActionCreator,
+  closeModal: closeModalActionCreator,
   setLoader: setLoaderActioncreator,
   unSetLoader: unsetLoaderActionCreator,
 } = uiSlice.actions;

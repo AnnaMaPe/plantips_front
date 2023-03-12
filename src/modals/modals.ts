@@ -15,5 +15,6 @@ export const showSuccessModal = (message: string) => {
     position: "top-center",
     closeOnClick: true,
     className: "toast-success",
+    closeButton: false,
   });
 };

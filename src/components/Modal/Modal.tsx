@@ -1,19 +1,25 @@
+import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { showErrorModal, showSuccessModal } from "../../modals/modals";
-import { useAppSelector } from "../../store/hooks";
+import { closeModalActionCreator } from "../../store/features/ui/uiSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 const Modal = (): JSX.Element => {
   const {
-    modal: { isError, message },
+    modal: { isError, message, isSuccess },
   } = useAppSelector((state) => state.ui);
 
-  if (isError) {
-    showErrorModal(message);
-  }
+  const dispatch = useAppDispatch();
 
-  if (!isError) {
-    showSuccessModal(message);
-  }
+  useEffect(() => {
+    if (isError) {
+      showErrorModal(message);
+    }
+    if (isSuccess) {
+      showSuccessModal(message);
+    }
+    dispatch(closeModalActionCreator());
+  }, [dispatch, isError, message, isSuccess]);
 
   return <ToastContainer />;
 };
