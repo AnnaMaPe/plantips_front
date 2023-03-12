@@ -15,6 +15,7 @@ const Modal = (): JSX.Element => {
     if (isError) {
       showErrorModal(message);
     }
+
     if (isSuccess) {
       showSuccessModal(message);
     }

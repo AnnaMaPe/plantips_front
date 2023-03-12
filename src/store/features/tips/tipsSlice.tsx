@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TipsStructure } from "./types";
-import { TipsFromApi } from "./types";
+import { TipsFromApi, TipsStructure } from "./types";
 
 const tipsInitialState: TipsFromApi = { tips: [] };
 
