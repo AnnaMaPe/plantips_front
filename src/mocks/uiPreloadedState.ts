@@ -7,7 +7,7 @@ export const preloadedErrorUiState: UiState = {
 };
 
 export const preloadedUiState: UiState = {
-  modal: { isError: false, message: "You were successfully logedout!" },
+  modal: { isError: false, message: "You were successfully logged out!" },
   isLoading: true,
 };
 

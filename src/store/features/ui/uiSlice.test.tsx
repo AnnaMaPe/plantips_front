@@ -1,5 +1,10 @@
 import { ModalPayload, UiState } from "./types";
-import { openModalActionCreator, uiReducer } from "./uiSlice";
+import {
+  openModalActionCreator,
+  setLoaderActioncreator,
+  uiReducer,
+  unsetLoaderActionCreator,
+} from "./uiSlice";
 
 describe("Given a uiReducer reducer", () => {
   describe("When it is called with an openModal action and an error with the text 'Wrong credentials'", () => {
@@ -24,6 +29,41 @@ describe("Given a uiReducer reducer", () => {
       const newUiState = uiReducer(uiInitialState, openModalAction);
 
       expect(newUiState).toStrictEqual(expectedNewState);
+    });
+  });
+
+  describe("When it is called with a setLoader action", () => {
+    test("Then it should return a new state with setLoader is true'", () => {
+      const uiInitialState: UiState = {
+        isLoading: false,
+        modal: { isError: false, message: "" },
+      };
+      const expectedUiState: UiState = {
+        isLoading: true,
+        modal: { isError: false, message: "" },
+      };
+
+      const setLoaderAction = setLoaderActioncreator();
+      const newUiState = uiReducer(uiInitialState, setLoaderAction);
+
+      expect(newUiState).toStrictEqual(expectedUiState);
+    });
+  });
+  describe("When it is called with a unsetLoader action", () => {
+    test("Then it should render a loader with the aria-role 'status''", () => {
+      const uiInitialState: UiState = {
+        isLoading: true,
+        modal: { isError: false, message: "" },
+      };
+      const expectedUiState: UiState = {
+        isLoading: false,
+        modal: { isError: false, message: "" },
+      };
+
+      const unsetLoaderAction = unsetLoaderActionCreator();
+      const newUiState = uiReducer(uiInitialState, unsetLoaderAction);
+
+      expect(newUiState).toStrictEqual(expectedUiState);
     });
   });
 });
