@@ -15,7 +15,7 @@ import {
 
 const useUser = (): UseUserStructure => {
   const apiUrl = process.env.REACT_APP_URL_API;
-  const loginEndpoint = "/users/login";
+  const loginEndpoint = "/plantips/login";
 
   const dispatch = useAppDispatch();
 
