@@ -20,4 +20,9 @@ export const errorHandlers = [
     `${process.env.REACT_APP_URL_API}${endpoints.plantips}${endpoints.login}`,
     async (req, res, ctx) => res(ctx.status(400))
   ),
+
+  rest.get(
+    `${process.env.REACT_APP_URL_API}${endpoints.plantips}${endpoints.tips}`,
+    async (req, res, ctx) => res(ctx.status(500))
+  ),
 ];
