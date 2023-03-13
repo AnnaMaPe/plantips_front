@@ -7,12 +7,12 @@ const tipsSlice = createSlice({
   name: "tips",
   initialState: tipsInitialState,
   reducers: {
-    loadTips: (currentTipsState, action: PayloadAction<TipsStructure>) => ({
+    loadAllTips: (currentTipsState, action: PayloadAction<TipsStructure>) => ({
       ...currentTipsState,
-      tips: action.payload,
+      tips: [...action.payload],
     }),
   },
 });
 
 export const tipsReducer = tipsSlice.reducer;
-export const { loadTips: loadTipsActionCreator } = tipsSlice.actions;
+export const { loadAllTips: loadAllTipsActionCreator } = tipsSlice.actions;

@@ -12,22 +12,23 @@ import {
   setLoaderActioncreator,
   unsetLoaderActionCreator,
 } from "../../store/features/ui/uiSlice";
+import { endpoints } from "../../routers/endpoints";
 
 const useUser = (): UseUserStructure => {
-  const apiUrl = process.env.REACT_APP_URL_API;
-  const loginEndpoint = "/plantips/login";
-
   const dispatch = useAppDispatch();
 
   const loginUser = async (userCredentials: UserCredentials) => {
     try {
       dispatch(setLoaderActioncreator());
 
-      const response = await fetch(`${apiUrl}${loginEndpoint}`, {
-        method: "POST",
-        body: JSON.stringify(userCredentials),
-        headers: { "Content-type": "application/json" },
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_URL_API}${endpoints.plantips}${endpoints.login}`,
+        {
+          method: "POST",
+          body: JSON.stringify(userCredentials),
+          headers: { "Content-type": "application/json" },
+        }
+      );
 
       dispatch(unsetLoaderActionCreator());
 

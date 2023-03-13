@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import endpoints from "../../routers/endpoints";
+import { endpoints } from "../../routers/endpoints";
 import { useAppSelector } from "../../store/hooks";
 
 interface ProtectedRouteProps {
