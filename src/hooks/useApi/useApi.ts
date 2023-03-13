@@ -23,7 +23,6 @@ const useApi = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
-      const { tips } = (await response.json()) as TipsFromApi;
 
       if (!response.ok) {
         const errorMessage = "Not possible to load Tips";
@@ -32,6 +31,7 @@ const useApi = () => {
 
         throw errorMessageError;
       }
+      const { tips } = (await response.json()) as TipsFromApi;
 
       dispatch(loadAllTipsActionCreator(tips));
       dispatch(unsetLoaderActionCreator());
