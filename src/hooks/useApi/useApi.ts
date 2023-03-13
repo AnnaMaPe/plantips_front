@@ -5,6 +5,7 @@ import { TipsFromApi } from "../../store/features/tips/types";
 import {
   openModalActionCreator,
   setLoaderActioncreator,
+  unsetLoaderActionCreator,
 } from "../../store/features/ui/uiSlice";
 import { useAppDispatch } from "../../store/hooks";
 
@@ -33,8 +34,10 @@ const useApi = () => {
       }
 
       dispatch(loadAllTipsActionCreator(tips));
+      dispatch(unsetLoaderActionCreator());
     } catch (error: unknown) {
       const errorMessage = (error as Error).message;
+      dispatch(unsetLoaderActionCreator());
       dispatch(
         openModalActionCreator({
           isError: true,
