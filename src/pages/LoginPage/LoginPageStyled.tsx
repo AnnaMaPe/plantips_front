@@ -13,7 +13,7 @@ const LoginPageStyled = styled.div`
   .login {
     &__photo {
       min-width: 100vw;
-      margin: -20px 0 0 -20px;
+      margin: -22px 20px 0 -20px;
       object-fit: cover;
     }
     &__title {
