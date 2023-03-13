@@ -9,8 +9,6 @@ import { ModalPayload } from "../../store/features/ui/types";
 import { openModalActionCreator } from "../../store/features/ui/uiSlice";
 import useApi from "./useApi";
 
-jest.mock("jwt-decode", () => jest.fn());
-
 afterEach(() => {
   jest.clearAllMocks();
 });
@@ -19,7 +17,7 @@ const dispatchSpy = jest.spyOn(store, "dispatch");
 
 describe("Given the useApi custom hook", () => {
   describe("When the loadAllTips function is called", () => {
-    test("Then it should the dispatch", async () => {
+    test("Then it should call the dispatch method", async () => {
       const {
         result: {
           current: { loadAllTips },
