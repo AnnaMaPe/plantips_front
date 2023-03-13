@@ -14,6 +14,7 @@ const LoginPageStyled = styled.div`
     &__photo {
       min-width: 100vw;
       margin: -20px 0 0 -20px;
+      object-fit: cover;
     }
     &__title {
       font-family: ${(props) => props.theme.fonts.title};
