@@ -5,7 +5,11 @@ const App = () => {
   const { saveToken } = useToken();
 
   saveToken();
-  return <Layout />;
+  return (
+    <>
+      <Layout />
+    </>
+  );
 };
 
 export default App;
