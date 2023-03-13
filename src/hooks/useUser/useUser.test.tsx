@@ -6,6 +6,10 @@ import { CustomTokenPayload, UserCredentials } from "../useUser/types";
 import decodeToken from "jwt-decode";
 import { loginUserActionCreator } from "../../store/features/user/userSlice";
 import { User } from "../../store/features/user/types";
+import { server } from "../../mocks/server";
+import { errorHandlers } from "../../mocks/handlers";
+import { ModalPayload } from "../../store/features/ui/types";
+import { openModalActionCreator } from "../../store/features/ui/uiSlice";
 
 jest.mock("jwt-decode", () => jest.fn());
 
@@ -29,7 +33,7 @@ const mocken = "ThisIsAToken";
 
 describe("Given the useUser custom hook", () => {
   describe("When the loginUser function is called", () => {
-    test("Then it should call the dispatch", async () => {
+    test("Then it should call the dispatch with the action to log in the user", async () => {
       const mockedLoggedinUser: User = {
         id: mockenPayload.id,
         username: mockenPayload.username,
@@ -51,6 +55,28 @@ describe("Given the useUser custom hook", () => {
       expect(dispatchSpy).toHaveBeenCalledWith(
         loginUserActionCreator(mockedLoggedinUser)
       );
+    });
+  });
+  describe("When the loginUser function is called and the request to login fails", () => {
+    beforeEach(() => {
+      server.resetHandlers(...errorHandlers);
+    });
+    test("Then it should call the dispatch with the openModalActionCreator to show an error modal with the text 'Wrong credentials'", async () => {
+      const {
+        result: {
+          current: { loginUser },
+        },
+      } = renderHook(() => useUser(), { wrapper: Wrapper });
+
+      const modal: ModalPayload = {
+        isError: true,
+        isSuccess: false,
+        message: "Wrong credentials",
+      };
+
+      await loginUser(mockedUserCredentials);
+
+      expect(dispatchSpy).toHaveBeenCalledWith(openModalActionCreator(modal));
     });
   });
 });

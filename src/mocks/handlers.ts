@@ -14,3 +14,10 @@ export const handlers = [
     async (req, res, ctx) => res(ctx.status(200), ctx.json(tipsFromApi))
   ),
 ];
+
+export const errorHandlers = [
+  rest.post(
+    `${process.env.REACT_APP_URL_API}${endpoints.plantips}${endpoints.login}`,
+    async (req, res, ctx) => res(ctx.status(400))
+  ),
+];
