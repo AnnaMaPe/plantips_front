@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
-import { Loader } from "./components/Loader/Loader";
-import Modal from "./components/Modal/Modal";
-import { useAppSelector } from "./store/hooks";
+import { useAppSelector } from "../../store/hooks";
+import { Loader } from "../Loader/Loader";
+import Modal from "../Modal/Modal";
 
-const App = () => {
+export const Layout = (): JSX.Element => {
   const { isLoading } = useAppSelector((state) => state.ui);
 
   return (
@@ -14,5 +14,3 @@ const App = () => {
     </div>
   );
 };
-
-export default App;

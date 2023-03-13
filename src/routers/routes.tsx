@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
-import App from "../App";
+import App from "../components/App/App";
 import { ProtectedRoute } from "../components/ProtectedRoute/ProtectedRoute";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import { endpoints } from "./endpoints";
