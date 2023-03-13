@@ -4,6 +4,7 @@ import { useAppDispatch } from "../../store/hooks";
 import decodeToken from "jwt-decode";
 import useToken from "./useToken";
 import { mockenPayload } from "../../mocks/tokenMocks";
+import { loginUserActionCreator } from "../../store/features/user/userSlice";
 
 jest.mock("../../store/hooks");
 
@@ -14,8 +15,8 @@ beforeAll(() => {
 });
 
 describe("Given the useToken customHook", () => {
-  describe("When the saveToken function is called and there is a token", () => {
-    test("Then the dispatch should be called with the action to log in the user", () => {
+  describe("When the saveToken function is called", () => {
+    test("Then the dispatch should be called", () => {
       const mocken = "ThisIsAToken";
       localStorage.setItem("token", mocken);
       const mockDispatch = jest.fn();
@@ -31,7 +32,14 @@ describe("Given the useToken customHook", () => {
       } = renderHook(() => useToken(), { wrapper: Wrapper });
       saveToken();
 
-      expect(mockDispatch).toHaveBeenCalled();
+      expect(mockDispatch).toHaveBeenCalledWith(
+        loginUserActionCreator({
+          id: "12345",
+          username: "PlantLover",
+          token: mocken,
+        })
+      );
+
       localStorage.clear();
     });
   });
