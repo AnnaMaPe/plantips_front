@@ -9,12 +9,13 @@ const LoginPageStyled = styled.div`
   gap: 10px;
   text-align: center;
   font-weight: 400;
+  min-height: 100%;
 
   .login {
     &__photo {
-      min-width: 100vw;
-      margin: -22px 20px 0 -20px;
+      width: 100vw;
       object-fit: cover;
+      margin: -25px 0 0 -19px;
     }
     &__title {
       font-family: ${(props) => props.theme.fonts.title};

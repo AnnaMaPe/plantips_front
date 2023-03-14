@@ -10,7 +10,9 @@ export const Layout = (): JSX.Element => {
     <>
       {isLoading && <Loader />}
       <Modal />
-      <Outlet />
+      <div className="container">
+        <Outlet />
+      </div>
     </>
   );
 };

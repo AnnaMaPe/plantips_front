@@ -1,19 +1,17 @@
 import styled from "styled-components";
 
 export const LoaderStyled = styled.div`
-  position: absolute;
+  border: 1px solid red;
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  min-width: auto;
-  height: 100%;
+  justify-content: center;
+  min-height: 100%;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(255, 255, 255, 0.6);
-  z-index: 0;
-  padding-top: 250px;
 
   .ring {
     --uib-size: 150px;
