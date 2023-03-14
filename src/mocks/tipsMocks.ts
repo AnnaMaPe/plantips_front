@@ -5,6 +5,7 @@ import {
 } from "../store/features/tips/types";
 
 export const monstera: TipStructure = {
+  id: "123456",
   commonName: "Monstera",
   scientificName: "Monstera deliciosa",
   careLevel: "Best for conneiseurs",

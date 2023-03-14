@@ -45,7 +45,8 @@ button {
 }
 
 .container {
-  margin: 20px 
+  padding: 20px; 
+  width: 100vw;
 }
 
 
