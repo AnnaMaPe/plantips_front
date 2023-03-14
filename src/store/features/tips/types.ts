@@ -1,4 +1,5 @@
 export interface TipStructure {
+  id: string;
   commonName: string;
   scientificName: string;
   careLevel: string;
