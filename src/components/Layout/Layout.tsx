@@ -7,10 +7,10 @@ export const Layout = (): JSX.Element => {
   const { isLoading } = useAppSelector((state) => state.ui);
 
   return (
-    <div className="container">
+    <>
       {isLoading && <Loader />}
       <Modal />
       <Outlet />
-    </div>
+    </>
   );
 };

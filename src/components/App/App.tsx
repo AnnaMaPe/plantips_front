@@ -6,9 +6,9 @@ const App = () => {
 
   saveToken();
   return (
-    <>
+    <div className="container">
       <Layout />
-    </>
+    </div>
   );
 };
 
