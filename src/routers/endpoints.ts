@@ -3,6 +3,7 @@ interface Endpoints {
   users: string;
   login: string;
   tips: string;
+  home: string;
 }
 
 export const endpoints: Endpoints = {
@@ -10,4 +11,5 @@ export const endpoints: Endpoints = {
   users: "/users",
   login: "/login",
   tips: "/tips",
+  home: "/",
 };
