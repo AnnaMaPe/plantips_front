@@ -14,7 +14,7 @@ export const TipCard = ({ tip }: TipsProps): JSX.Element => {
         alt={tip.commonName}
         width="120"
         height="120"
-        src="https://res.cloudinary.com/dduvthi6s/image/upload/v1678630905/Ficus-Elastica-Robusta_rtr5da.webp"
+        src={tip.image}
       />
       <div className="card__details">
         <div className="card__text">
