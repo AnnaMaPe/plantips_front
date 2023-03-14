@@ -1,6 +1,13 @@
 import { screen } from "@testing-library/react";
+import * as ReactRouterDom from "react-router-dom";
+import { userIsLoggedState } from "../../mocks/userPreloadedState";
 import { renderWithProviders } from "../../test.utils/renderWithProviders";
 import LoginPage from "./LoginPage";
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  Navigate: jest.fn(),
+}));
 
 describe("Given a LoginPage component", () => {
   describe("When it is rendered", () => {
@@ -20,5 +27,13 @@ describe("Given a LoginPage component", () => {
     const image = screen.getByAltText(altText);
 
     expect(image).toBeInTheDocument();
+  });
+
+  describe("When the user is logged in", () => {
+    test("Then 'Navigate' should be called", () => {
+      renderWithProviders(<LoginPage />, { user: userIsLoggedState });
+
+      expect(ReactRouterDom.Navigate).toHaveBeenCalled();
+    });
   });
 });
