@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const HomePageStyled = styled.section`
-  color: ${(props) => props.theme.palette.primary};
-  font-family: ${(props) => props.theme.fonts.text};
-  font-size: 18px;
-  text-align: center;
-
   .home {
+    &__text {
+      color: ${(props) => props.theme.palette.primary};
+      font-family: ${(props) => props.theme.fonts.text};
+      font-size: 18px;
+      text-align: center;
+    }
     &__title {
       font-family: ${(props) => props.theme.fonts.title};
       font-size: 60px;
