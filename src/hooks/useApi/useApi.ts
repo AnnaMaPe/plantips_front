@@ -17,7 +17,7 @@ const useApi = () => {
       dispatch(setLoaderActioncreator());
 
       const response = await fetch(
-        `${process.env.REACT_APP_URL_API}${endpoints.plantips}${endpoints.tips}`,
+        `${process.env.REACT_APP_URL_API}${endpoints.tips}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },

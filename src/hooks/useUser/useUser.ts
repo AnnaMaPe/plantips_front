@@ -22,7 +22,7 @@ const useUser = (): UseUserStructure => {
       dispatch(setLoaderActioncreator());
 
       const response = await fetch(
-        `${process.env.REACT_APP_URL_API}${endpoints.plantips}${endpoints.login}`,
+        `${process.env.REACT_APP_URL_API}${endpoints.users}${endpoints.login}`,
         {
           method: "POST",
           body: JSON.stringify(userCredentials),
