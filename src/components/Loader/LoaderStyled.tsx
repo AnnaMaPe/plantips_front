@@ -12,6 +12,7 @@ export const LoaderStyled = styled.div`
   right: 0;
   bottom: 0;
   background-color: rgba(255, 255, 255, 0.6);
+  z-index: 1;
 
   .ring {
     --uib-size: 150px;
