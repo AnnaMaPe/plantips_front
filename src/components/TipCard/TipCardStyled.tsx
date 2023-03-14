@@ -16,13 +16,15 @@ export const TipCardStyled = styled.article`
       flex-direction: column;
       justify-content: space-between;
       width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     &__text {
       margin-left: 8px;
       display: flex;
       flex-direction: column;
       font-family: ${(props) => props.theme.fonts.text};
-      height: fit-content;
     }
     & __title {
       font-size: 20px;
