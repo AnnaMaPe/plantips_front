@@ -3,6 +3,7 @@ import App from "../components/App/App";
 import { ProtectedRoute } from "../components/ProtectedRoute/ProtectedRoute";
 import { HomePage } from "../pages/HomePage/HomePage";
 import LoginPage from "../pages/LoginPage/LoginPage";
+import { MyTipsPage } from "../pages/MyTipsPage/MyTipsPage";
 import { endpoints } from "./endpoints";
 
 const routes: RouteObject[] = [
@@ -12,6 +13,7 @@ const routes: RouteObject[] = [
     children: [
       { path: "/", element: <ProtectedRoute element={<HomePage />} /> },
       { path: endpoints.login, element: <LoginPage /> },
+      { path: endpoints.myTips, element: <MyTipsPage /> },
     ],
   },
 ];
