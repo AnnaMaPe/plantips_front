@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { renderRouterWithProviders } from "../../test.utils/renderWithProviders";
+import { renderWithProviders } from "../../test.utils/renderWithProviders";
 import { MyTipsPage } from "./MyTipsPage";
 
 describe("Given the MyTipsPage page", () => {
@@ -7,7 +7,7 @@ describe("Given the MyTipsPage page", () => {
     test("Then it should shows the title 'My tips'", () => {
       const expectedTitle = /my tips/i;
 
-      renderRouterWithProviders(<MyTipsPage />);
+      renderWithProviders(<MyTipsPage />);
       const heading = screen.getByRole("heading", { name: expectedTitle });
 
       expect(heading).toBeInTheDocument();
