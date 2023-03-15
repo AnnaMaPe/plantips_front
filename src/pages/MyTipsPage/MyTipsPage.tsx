@@ -1,4 +1,14 @@
+import { useEffect } from "react";
+import { TipsList } from "../../components/TipsList/TipsList";
+import useApi from "../../hooks/useApi/useApi";
+
 export const MyTipsPage = (): JSX.Element => {
+  const { loadMyTips } = useApi();
+
+  useEffect(() => {
+    loadMyTips();
+  }, [loadMyTips]);
+
   return (
     <>
       <div className="my-tips__text">
@@ -7,6 +17,7 @@ export const MyTipsPage = (): JSX.Element => {
           Check and modify the tips you have shared with our leafy community
         </span>
       </div>
+      <TipsList />
     </>
   );
 };
