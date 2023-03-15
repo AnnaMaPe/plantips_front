@@ -21,7 +21,10 @@ const useApi = () => {
         `${process.env.REACT_APP_URL_API}${endpoints.tips}`,
         {
           method: "GET",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
 
@@ -47,7 +50,7 @@ const useApi = () => {
         })
       );
     }
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   const loadMyTips = useCallback(async () => {
     try {

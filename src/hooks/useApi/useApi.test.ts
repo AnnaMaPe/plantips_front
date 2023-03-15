@@ -56,4 +56,42 @@ describe("Given the useApi custom hook", () => {
       );
     });
   });
+
+  describe("When the loadMyTips function it is called", () => {
+    test("Then it should call the dispatch method", async () => {
+      const {
+        result: {
+          current: { loadMyTips },
+        },
+      } = renderHook(() => useApi(), { wrapper: Wrapper });
+
+      await loadMyTips();
+
+      expect(dispatchSpy).toHaveBeenCalledWith(
+        loadAllTipsActionCreator(mockListOfTips)
+      );
+    });
+  });
+  describe("When the loadMyTips function is called and the response fails", () => {
+    beforeEach(() => {
+      server.resetHandlers(...errorHandlers);
+    });
+    test("Then it should call the dispatch with the openModalActionCreator to show an error modal with the text 'Not possible to load your Tips'", async () => {
+      const {
+        result: {
+          current: { loadMyTips },
+        },
+      } = renderHook(() => useApi(), { wrapper: Wrapper });
+
+      const modal: ModalPayload = {
+        isError: true,
+        isSuccess: false,
+        message: "Not possible to load your Tips",
+      };
+
+      await loadMyTips();
+
+      expect(dispatchSpy).toHaveBeenCalledWith(openModalActionCreator(modal));
+    });
+  });
 });
