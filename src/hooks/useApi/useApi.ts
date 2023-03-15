@@ -54,6 +54,7 @@ const useApi = () => {
 
   const loadMyTips = useCallback(async () => {
     try {
+      dispatch(setLoaderActioncreator());
       const response = await fetch(
         `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.myTips}`,
         {
@@ -73,7 +74,9 @@ const useApi = () => {
       const { tips } = (await response.json()) as TipsFromApi;
 
       dispatch(loadAllTipsActionCreator(tips));
+      dispatch(unsetLoaderActionCreator());
     } catch (error) {
+      dispatch(unsetLoaderActionCreator());
       const errorMessage = (error as Error).message;
       dispatch(
         openModalActionCreator({
