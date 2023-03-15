@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import { useAppSelector } from "../../store/hooks";
-import { renderRouterWithProviders } from "../../test.utils/renderWithProviders";
+import { renderWithProviders } from "../../test.utils/renderWithProviders";
 import { ProtectedRoute } from "./ProtectedRoute";
 
 jest.mock("../../store/hooks", () => ({
@@ -17,7 +17,7 @@ describe("Given a ProtectedRoute component", () => {
       const reactElement = <div>Home Page</div>;
       const expectedText = "Home Page";
 
-      renderRouterWithProviders(<ProtectedRoute element={reactElement} />);
+      renderWithProviders(<ProtectedRoute element={reactElement} />);
       const expectedReactElement = screen.getByText(expectedText);
 
       expect(expectedReactElement).toBeInTheDocument();
