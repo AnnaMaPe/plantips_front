@@ -13,7 +13,7 @@ export const monstera: TipStructure = {
   light: "Indirect light",
   tip: "Do not overwater it",
   image: "pretty_plant.jpg",
-  tipSharedBy: "PlantLover",
+  tipSharedBy: "640631137b5cc26616353c5e",
 };
 export const mockListOfTips: TipsStructure = [monstera];
 
