@@ -28,21 +28,15 @@ export const TipCard = ({ tip }: TipsProps): JSX.Element => {
         </div>
         {loggedUser && (
           <div className="card__icons ">
-            <button>
+            <button aria-label="edit">
               <FontAwesomeIcon
                 className="card__icon"
                 role="button"
-                aria-label="edit"
                 icon={solid("pencil")}
               />
             </button>
-            <button>
-              <FontAwesomeIcon
-                className="card__icon"
-                role="button"
-                aria-label="delete"
-                icon={solid("trash")}
-              />
+            <button aria-label="delete">
+              <FontAwesomeIcon className="card__icon" icon={solid("trash")} />
             </button>
           </div>
         )}

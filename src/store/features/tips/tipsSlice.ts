@@ -14,8 +14,14 @@ const tipsSlice = createSlice({
       ...currentTipsState,
       tips: [...action.payload],
     }),
+    deleteTipById: (currentTipsState, action: PayloadAction<string>) => {
+      currentTipsState.tips.filter((tip) => tip.id !== action.payload);
+    },
   },
 });
 
 export const tipsReducer = tipsSlice.reducer;
-export const { loadAllTips: loadAllTipsActionCreator } = tipsSlice.actions;
+export const {
+  loadAllTips: loadAllTipsActionCreator,
+  deleteTipById: deleteTipByIdActionCreator,
+} = tipsSlice.actions;
