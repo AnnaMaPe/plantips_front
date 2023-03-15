@@ -1,16 +1,8 @@
-import { useEffect } from "react";
-import useApi from "../../hooks/useApi/useApi";
 import { useAppSelector } from "../../store/hooks";
 import { TipCard } from "../TipCard/TipCard";
 import { TipsListStyled } from "./TipsListStyled";
 
 export const TipsList = (): JSX.Element => {
-  const { loadAllTips } = useApi();
-
-  useEffect(() => {
-    loadAllTips();
-  }, [loadAllTips]);
-
   const tips = useAppSelector((state) => state.tips.tips);
 
   return (

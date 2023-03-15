@@ -1,7 +1,15 @@
+import { useEffect } from "react";
 import { TipsList } from "../../components/TipsList/TipsList";
+import useApi from "../../hooks/useApi/useApi";
 import { HomePageStyled } from "./HomePageStyled";
 
 export const HomePage = (): JSX.Element => {
+  const { loadAllTips } = useApi();
+
+  useEffect(() => {
+    loadAllTips();
+  }, [loadAllTips]);
+
   return (
     <HomePageStyled className="home">
       <div className="home__text">
