@@ -1,6 +1,10 @@
-import { loadAllTipsActionCreator, tipsReducer } from "./tipsSlice";
+import {
+  deleteTipByIdActionCreator,
+  loadAllTipsActionCreator,
+  tipsReducer,
+} from "./tipsSlice";
 import { TipsFromApi } from "./types";
-import { monstera } from "../../../mocks/tipsMocks";
+import { maranta, monstera } from "../../../mocks/tipsMocks";
 
 describe("Given a tipsReducer reducer", () => {
   describe("When it receives a new tip and the loadTips action", () => {
@@ -12,6 +16,20 @@ describe("Given a tipsReducer reducer", () => {
       const result = tipsReducer(initialTipState, loadTipsAction);
       const updatedTipsList = {
         tips: [monstera],
+      };
+
+      expect(updatedTipsList).toStrictEqual(result);
+    });
+  });
+
+  describe("When it receives two tips and the deleteTipById action to delete the monstera", () => {
+    test("Then it should update the list without the monstera", () => {
+      const initialTipState: TipsFromApi = { tips: [monstera, maranta] };
+
+      const deleteTipByIdAction = deleteTipByIdActionCreator(monstera.id);
+      const result = tipsReducer(initialTipState, deleteTipByIdAction);
+      const updatedTipsList = {
+        tips: [maranta],
       };
 
       expect(updatedTipsList).toStrictEqual(result);
