@@ -1,8 +1,8 @@
 import { UserState } from "../store/features/user/types";
 
 export const userIsLoggedState: UserState = {
-  username: "",
-  id: "",
-  token: "",
+  username: "PlantLover",
+  id: "640631137b5cc26616353c5e",
+  token: "sfsadvfdsafgaesdgdsaf<sfsdf",
   isLogged: true,
 };

@@ -7,7 +7,10 @@ const tipsSlice = createSlice({
   name: "tips",
   initialState: tipsInitialState,
   reducers: {
-    loadAllTips: (currentTipsState, action: PayloadAction<TipsStructure>) => ({
+    loadAllTips: (
+      currentTipsState,
+      action: PayloadAction<TipsStructure>
+    ): TipsFromApi => ({
       ...currentTipsState,
       tips: [...action.payload],
     }),
