@@ -8,7 +8,7 @@ export const TipsListStyled = styled.ul`
       margin: 15px 0 15px 0;
     }
     &__item {
-      margin: 15px 0 15px 0;
+      margin: 20px 0 20px 0;
     }
   }
 `;
