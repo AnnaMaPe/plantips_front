@@ -1,6 +1,9 @@
 import { useCallback } from "react";
 import { endpoints } from "../../routers/endpoints";
-import { loadAllTipsActionCreator } from "../../store/features/tips/tipsSlice";
+import {
+  deleteTipByIdActionCreator,
+  loadAllTipsActionCreator,
+} from "../../store/features/tips/tipsSlice";
 import { TipsFromApi } from "../../store/features/tips/types";
 import {
   openModalActionCreator,
@@ -88,7 +91,51 @@ const useApi = () => {
     }
   }, [dispatch, token]);
 
-  return { loadAllTips, loadMyTips };
+  const deleteTipById = useCallback(
+    async (id: string) => {
+      try {
+        dispatch(setLoaderActioncreator());
+
+        const response = await fetch(
+          `${process.env.REACT_APP_URL_API}${endpoints.delete}${endpoints.id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          const errorMessage = "Tip was not deleted. Try again!";
+
+          throw new Error(errorMessage);
+        }
+
+        dispatch(deleteTipByIdActionCreator(id));
+        dispatch(
+          openModalActionCreator({
+            isError: false,
+            isSuccess: true,
+            message: "Tip was successfully deleted",
+          })
+        );
+        dispatch(unsetLoaderActionCreator());
+      } catch (error: unknown) {
+        dispatch(
+          openModalActionCreator({
+            isError: true,
+            message: (error as Error).message,
+            isSuccess: false,
+          })
+        );
+      }
+    },
+    [dispatch, token]
+  );
+
+  return { loadAllTips, loadMyTips, deleteTipById };
 };
 
 export default useApi;
