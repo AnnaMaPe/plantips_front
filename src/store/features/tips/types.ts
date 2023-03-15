@@ -7,7 +7,7 @@ export interface TipStructure {
   light: string;
   tip: string;
   image: string;
-  tipSharedBy: string;
+  sharedBy: string;
 }
 
 export type TipsStructure = TipStructure[];

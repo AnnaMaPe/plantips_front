@@ -25,7 +25,7 @@ const mockedUserCredentials: UserCredentials = {
 };
 
 const mockenPayload: CustomTokenPayload = {
-  id: "36",
+  sub: "36",
   username: mockedUserCredentials.username,
 };
 
@@ -35,7 +35,7 @@ describe("Given the useUser custom hook", () => {
   describe("When the loginUser function is called", () => {
     test("Then it should call the dispatch with the action to log in the user", async () => {
       const mockedLoggedinUser: User = {
-        id: mockenPayload.id,
+        id: mockenPayload.sub,
         username: mockenPayload.username,
         token: mocken,
       };
