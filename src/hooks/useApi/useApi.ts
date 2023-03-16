@@ -114,6 +114,7 @@ const useApi = () => {
         }
 
         dispatch(deleteTipByIdActionCreator(id));
+        dispatch(unsetLoaderActionCreator());
         dispatch(
           openModalActionCreator({
             isError: false,
@@ -121,7 +122,6 @@ const useApi = () => {
             message: "Tip was successfully deleted",
           })
         );
-        dispatch(unsetLoaderActionCreator());
       } catch (error: unknown) {
         dispatch(
           openModalActionCreator({
