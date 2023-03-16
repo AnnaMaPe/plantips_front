@@ -16,7 +16,11 @@ const useToken = (): UseTokenStructure => {
       dispatch(loginUserActionCreator({ id, username, token }));
     }
   }, [dispatch]);
-  return { saveToken };
+
+  const deleteToken = () => {
+    localStorage.removeItem("token");
+  };
+  return { saveToken, deleteToken };
 };
 
 export default useToken;
