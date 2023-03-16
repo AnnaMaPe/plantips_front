@@ -1,21 +1,30 @@
-import { PropsWithChildren } from "react";
 import { ButtonStyled } from "./ButtonStyled";
 
 interface ButtonProps {
   text?: string;
   isDisabled?: boolean;
-  children?: PropsWithChildren;
+  icon?: JSX.Element;
   action?: () => void;
+  className?: string;
+  ariaLabel?: string;
 }
 
 export const Button = ({
   text,
   isDisabled,
   action,
-  children,
+  icon,
+  className,
+  ariaLabel,
 }: ButtonProps): JSX.Element => {
   return (
-    <ButtonStyled onClick={action} disabled={isDisabled}>
+    <ButtonStyled
+      aria-label={ariaLabel}
+      className={className}
+      onClick={action}
+      disabled={isDisabled}
+    >
+      {icon}
       {text}
     </ButtonStyled>
   );

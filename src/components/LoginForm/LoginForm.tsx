@@ -53,7 +53,7 @@ const LoginForm = (): JSX.Element => {
         width={100}
         height={100}
       />
-      <Button isDisabled={isDisabled} text="Log in" />
+      <Button className="form__button" isDisabled={isDisabled} text="Log in" />
     </LoginFormStyled>
   );
 };
