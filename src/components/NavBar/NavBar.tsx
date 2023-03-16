@@ -2,10 +2,13 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { faHouseChimney } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
+import useUser from "../../hooks/useUser/useUser";
 import { endpoints } from "../../routers/endpoints";
 import { NavBarStyled } from "./NavBarStyled";
 
 export const NavBar = (): JSX.Element => {
+  const { logoutUser } = useUser();
+
   return (
     <NavBarStyled className="nav">
       <NavLink to={endpoints.home} title="home">
@@ -29,7 +32,11 @@ export const NavBar = (): JSX.Element => {
           icon={solid("clipboard-list")}
         />
       </NavLink>
-      <NavLink to={"hola"} title="log out">
+      <NavLink
+        to={endpoints.login}
+        onClick={() => logoutUser()}
+        title="log out"
+      >
         <FontAwesomeIcon
           name="log out"
           className="nav__icon"

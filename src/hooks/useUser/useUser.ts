@@ -1,6 +1,9 @@
 import decodeToken from "jwt-decode";
 import { useAppDispatch } from "../../store/hooks";
-import { loginUserActionCreator } from "../../store/features/user/userSlice";
+import {
+  loginUserActionCreator,
+  logoutUserActionCreator,
+} from "../../store/features/user/userSlice";
 import {
   CustomTokenPayload,
   LoginResponse,
@@ -13,9 +16,11 @@ import {
   unsetLoaderActionCreator,
 } from "../../store/features/ui/uiSlice";
 import { endpoints } from "../../routers/endpoints";
+import useToken from "../useToken/useToken";
 
 const useUser = (): UseUserStructure => {
   const dispatch = useAppDispatch();
+  const { deleteToken } = useToken();
 
   const loginUser = async (userCredentials: UserCredentials) => {
     try {
@@ -60,7 +65,18 @@ const useUser = (): UseUserStructure => {
       );
     }
   };
-  return { loginUser };
+  const logoutUser = () => {
+    deleteToken();
+    dispatch(logoutUserActionCreator());
+    dispatch(
+      openModalActionCreator({
+        isError: false,
+        isSuccess: true,
+        message: "You were successfully logedout!",
+      })
+    );
+  };
+  return { loginUser, logoutUser };
 };
 
 export default useUser;

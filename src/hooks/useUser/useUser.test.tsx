@@ -31,15 +31,14 @@ const mockenPayload: CustomTokenPayload = {
 
 const mocken = "ThisIsAToken";
 
+const mockedLoggedinUser: User = {
+  id: mockenPayload.sub,
+  username: mockenPayload.username,
+  token: mocken,
+};
 describe("Given the useUser custom hook", () => {
   describe("When the loginUser function is called", () => {
     test("Then it should call the dispatch with the action to log in the user", async () => {
-      const mockedLoggedinUser: User = {
-        id: mockenPayload.sub,
-        username: mockenPayload.username,
-        token: mocken,
-      };
-
       const {
         result: {
           current: { loginUser },
@@ -75,6 +74,26 @@ describe("Given the useUser custom hook", () => {
       };
 
       await loginUser(mockedUserCredentials);
+
+      expect(dispatchSpy).toHaveBeenCalledWith(openModalActionCreator(modal));
+    });
+  });
+
+  describe("When the logoutUser function is called", () => {
+    test("Then it should call the dispatch to show a succes modal", async () => {
+      const {
+        result: {
+          current: { logoutUser },
+        },
+      } = renderHook(() => useUser(), { wrapper: Wrapper });
+
+      await logoutUser();
+
+      const modal: ModalPayload = {
+        isError: false,
+        isSuccess: true,
+        message: "You were successfully logedout!",
+      };
 
       expect(dispatchSpy).toHaveBeenCalledWith(openModalActionCreator(modal));
     });

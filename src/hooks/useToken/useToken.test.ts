@@ -61,4 +61,22 @@ describe("Given the useToken customHook", () => {
       localStorage.clear();
     });
   });
+
+  describe("When the deleteToken function is called", () => {
+    test("Then the token should be deleted from local storage", () => {
+      const mocken = "ThisIsAToken";
+      localStorage.setItem("token", mocken);
+
+      const {
+        result: {
+          current: { deleteToken },
+        },
+      } = renderHook(() => useToken(), { wrapper: Wrapper });
+
+      deleteToken();
+
+      expect(localStorage.getItem(mocken)).toBeNull();
+      localStorage.clear();
+    });
+  });
 });
