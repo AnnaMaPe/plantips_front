@@ -3,14 +3,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { TipCardStyled } from "./TipCardStyled";
 import { useAppSelector } from "../../store/hooks";
+import { Button } from "../Button/Button";
 interface TipsProps {
   tip: TipStructure;
 }
 
 export const TipCard = ({ tip }: TipsProps): JSX.Element => {
   const { id } = useAppSelector((state) => state.user);
-
   const loggedUser = tip.sharedBy === id;
+
+  const deleteIcon = (
+    <FontAwesomeIcon className="card__icon" icon={solid("trash")} />
+  );
+  const editIcon = (
+    <FontAwesomeIcon className="card__icon" icon={solid("pencil")} />
+  );
 
   return (
     <TipCardStyled className="card">
@@ -29,16 +36,16 @@ export const TipCard = ({ tip }: TipsProps): JSX.Element => {
         </div>
         {loggedUser && (
           <div className="card__icons ">
-            <button aria-label="edit">
-              <FontAwesomeIcon
-                className="card__icon"
-                role="button"
-                icon={solid("pencil")}
-              />
-            </button>
-            <button aria-label="delete">
-              <FontAwesomeIcon className="card__icon" icon={solid("trash")} />
-            </button>
+            <Button
+              className="card__button"
+              ariaLabel={"edit"}
+              icon={editIcon}
+            />
+            <Button
+              className="card__button"
+              ariaLabel={"delete"}
+              icon={deleteIcon}
+            />
           </div>
         )}
       </div>

@@ -1,8 +1,10 @@
 import { screen } from "@testing-library/react";
 import { monstera } from "../../mocks/tipsMocks";
 import { userIsLoggedState } from "../../mocks/userPreloadedState";
-import { renderWithProviders } from "../../test.utils/renderWithProviders";
+import { renderRouterWithProviders } from "../../testUtils/renderRouterWithProviders";
+import { renderWithProviders } from "../../testUtils/renderWithProviders";
 import { TipCard } from "./TipCard";
+import "react-router-dom";
 
 describe("Given a TipCard component", () => {
   describe("When it is rendered with a Monstera", () => {
@@ -17,13 +19,14 @@ describe("Given a TipCard component", () => {
   });
 
   describe("When it is rendered with a Monstera that was shared by the logged user", () => {
-    test("Then it should show a a button with the aria-label 'edit'", () => {
-      const expectedAriaLabel = "delete";
+    test("Then it should show an icon with the aria-label 'edit'", () => {
+      const expectedLabel = "delete";
 
-      renderWithProviders(<TipCard tip={monstera} />, {
-        user: userIsLoggedState,
-      });
-      const button = screen.getByLabelText(expectedAriaLabel);
+      renderRouterWithProviders(
+        { user: userIsLoggedState },
+        <TipCard tip={monstera} />
+      );
+      const button = screen.getByRole("button", { name: expectedLabel });
 
       expect(button).toBeInTheDocument();
     });

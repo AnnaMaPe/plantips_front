@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import * as ReactRouterDom from "react-router-dom";
 import { userIsLoggedState } from "../../mocks/userPreloadedState";
-import { renderWithProviders } from "../../test.utils/renderWithProviders";
+import { renderWithProviders } from "../../testUtils/renderWithProviders";
 import LoginPage from "./LoginPage";
 
 jest.mock("react-router-dom", () => ({
