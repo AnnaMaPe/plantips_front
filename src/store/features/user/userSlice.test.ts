@@ -1,26 +1,39 @@
 import { UserState } from "./types";
-import { loginUserActionCreator, userReducer } from "./userSlice";
+import {
+  loginUserActionCreator,
+  logoutUserActionCreator,
+  userReducer,
+} from "./userSlice";
+
+const userInitialState: UserState = {
+  id: "",
+  username: "",
+  token: "",
+  isLogged: false,
+};
+const loggedUserState: UserState = {
+  id: "1234",
+  username: "PlantLover",
+  token: "mocken",
+  isLogged: true,
+};
 
 describe("Given a userReducer reducer", () => {
   describe("When it receives an user that is not logged and the loginUser action", () => {
     test("Then it should return the same user but logged in", () => {
-      const userInitialState: UserState = {
-        id: "1234",
-        username: "PlantLover",
-        token: "mocken",
-        isLogged: false,
-      };
-      const expectedUserFinalState: UserState = {
-        id: "1234",
-        username: "PlantLover",
-        token: "mocken",
-        isLogged: true,
-      };
+      const loginUserAction = loginUserActionCreator(loggedUserState);
+      const newUserState = userReducer(loggedUserState, loginUserAction);
 
-      const loginUserAction = loginUserActionCreator(userInitialState);
-      const newUserState = userReducer(userInitialState, loginUserAction);
+      expect(newUserState).toStrictEqual(loggedUserState);
+    });
+  });
 
-      expect(newUserState).toStrictEqual(expectedUserFinalState);
+  describe("When it receives an user that is logged and the logoutUser action", () => {
+    test("Then it should return the same user but logged out", () => {
+      const logoutUserAction = logoutUserActionCreator();
+      const newUserState = userReducer(loggedUserState, logoutUserAction);
+
+      expect(newUserState).toStrictEqual(userInitialState);
     });
   });
 });
