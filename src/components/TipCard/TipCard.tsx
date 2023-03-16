@@ -21,6 +21,8 @@ export const TipCard = ({ tip }: TipsProps): JSX.Element => {
     <FontAwesomeIcon className="card__icon" icon={solid("pencil")} />
   );
 
+  // const deleteTipAction = deleteTipById(id)
+
   return (
     <TipCardStyled className="card">
       <img
