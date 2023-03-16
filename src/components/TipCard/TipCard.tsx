@@ -4,12 +4,14 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { TipCardStyled } from "./TipCardStyled";
 import { useAppSelector } from "../../store/hooks";
 import { Button } from "../Button/Button";
+import useApi from "../../hooks/useApi/useApi";
 interface TipsProps {
   tip: TipStructure;
 }
 
 export const TipCard = ({ tip }: TipsProps): JSX.Element => {
   const { id } = useAppSelector((state) => state.user);
+  const { deleteTipById } = useApi();
   const loggedUser = tip.sharedBy === id;
 
   const deleteIcon = (
@@ -45,6 +47,7 @@ export const TipCard = ({ tip }: TipsProps): JSX.Element => {
               className="card__button"
               ariaLabel={"delete"}
               icon={deleteIcon}
+              action={() => deleteTipById(tip.id)}
             />
           </div>
         )}
