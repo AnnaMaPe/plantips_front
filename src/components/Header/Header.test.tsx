@@ -1,13 +1,14 @@
 import { screen } from "@testing-library/react";
-import { renderWithProviders } from "../../testUtils/renderWithProviders";
+import { renderRouterWithProviders } from "../../testUtils/renderRouterWithProviders";
 import { Header } from "./Header";
+import { userIsLoggedState } from "../../mocks/userPreloadedState";
 
 describe("Given a component Header", () => {
-  describe("When it is rendered", () => {
+  describe("When it is rendered and the user is logged", () => {
     test("Then it should show an image with the alt text 'Plantips logo'", () => {
       const expectAltText = "Plantips logo";
 
-      renderWithProviders(<Header />);
+      renderRouterWithProviders({ user: userIsLoggedState }, <Header />);
       const image = screen.getByAltText(expectAltText);
 
       expect(image).toBeInTheDocument();
