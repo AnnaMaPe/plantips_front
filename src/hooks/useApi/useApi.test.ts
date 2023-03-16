@@ -1,10 +1,13 @@
 import { renderHook } from "@testing-library/react";
 import { errorHandlers } from "../../mocks/handlers";
 import { server } from "../../mocks/server";
-import { mockListOfTips } from "../../mocks/tipsMocks";
+import { mockListOfTips, monstera } from "../../mocks/tipsMocks";
 import { Wrapper } from "../../mocks/Wrapper";
 import { store } from "../../store";
-import { loadAllTipsActionCreator } from "../../store/features/tips/tipsSlice";
+import {
+  deleteTipByIdActionCreator,
+  loadAllTipsActionCreator,
+} from "../../store/features/tips/tipsSlice";
 import { ModalPayload } from "../../store/features/ui/types";
 import { openModalActionCreator } from "../../store/features/ui/uiSlice";
 import useApi from "./useApi";
@@ -72,6 +75,7 @@ describe("Given the useApi custom hook", () => {
       );
     });
   });
+
   describe("When the loadMyTips function is called and the response fails", () => {
     beforeEach(() => {
       server.resetHandlers(...errorHandlers);
@@ -90,6 +94,47 @@ describe("Given the useApi custom hook", () => {
       };
 
       await loadMyTips();
+
+      expect(dispatchSpy).toHaveBeenCalledWith(openModalActionCreator(modal));
+    });
+  });
+
+  describe("When the deteleTipById function it is called", () => {
+    test("Then it should call the dispatch method", async () => {
+      const {
+        result: {
+          current: { deleteTipById },
+        },
+      } = renderHook(() => useApi(), { wrapper: Wrapper });
+
+      await deleteTipById(monstera.id);
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        2,
+        deleteTipByIdActionCreator(monstera.id)
+      );
+    });
+  });
+
+  describe("When the deteleTipById function is called and the response fails", () => {
+    beforeEach(() => {
+      server.resetHandlers(...errorHandlers);
+    });
+    test("Then it should call the dispatch with the openModalActionCreator to show an error modal with the text 'Not possible to load your Tips'", async () => {
+      const {
+        result: {
+          current: { deleteTipById },
+        },
+      } = renderHook(() => useApi(), { wrapper: Wrapper });
+
+      const modal: ModalPayload = {
+        isError: true,
+        isSuccess: false,
+        message: "Tip was not deleted. Try again!",
+      };
+      const mockedId = "12255321312";
+
+      await deleteTipById(mockedId);
 
       expect(dispatchSpy).toHaveBeenCalledWith(openModalActionCreator(modal));
     });

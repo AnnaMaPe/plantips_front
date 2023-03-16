@@ -9,6 +9,7 @@ interface TipsProps {
 
 export const TipCard = ({ tip }: TipsProps): JSX.Element => {
   const { id } = useAppSelector((state) => state.user);
+
   const loggedUser = tip.sharedBy === id;
 
   return (
