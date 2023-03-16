@@ -1,11 +1,11 @@
 import useToken from "../../hooks/useToken/useToken";
-import { Layout } from "../Layout/Layout";
+import { NavBar } from "../NavBar/NavBar";
 
 const App = () => {
   const { saveToken } = useToken();
 
   saveToken();
-  return <Layout />;
+  return <NavBar />;
 };
 
 export default App;
