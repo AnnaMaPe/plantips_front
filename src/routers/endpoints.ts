@@ -6,7 +6,8 @@ interface Endpoints {
   home: string;
   myTips: string;
   delete: string;
-  id: string;
+  slash: string;
+  findId: string;
 }
 
 export const endpoints: Endpoints = {
@@ -17,5 +18,6 @@ export const endpoints: Endpoints = {
   home: "/",
   myTips: "/my-tips",
   delete: "/delete",
-  id: "/:id",
+  slash: "/",
+  findId: "/:id",
 };

@@ -18,7 +18,7 @@ export const handlers = [
     async (req, res, ctx) => res(ctx.status(200), ctx.json(tipsFromApi))
   ),
   rest.delete(
-    `${process.env.REACT_APP_URL_API}${endpoints.delete}${endpoints.id}`,
+    `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.delete}${endpoints.findId}`,
     async (req, res, ctx) => res(ctx.status(200), ctx.json(tipsFromApi))
   ),
 ];
@@ -39,7 +39,7 @@ export const errorHandlers = [
     async (req, res, ctx) => res(ctx.status(500))
   ),
   rest.delete(
-    `${process.env.REACT_APP_URL_API}${endpoints.delete}${endpoints.id}`,
+    `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.delete}${endpoints.findId}`,
     async (req, res, ctx) => res(ctx.status(500))
   ),
 ];

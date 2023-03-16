@@ -97,7 +97,7 @@ const useApi = () => {
         dispatch(setLoaderActioncreator());
 
         const response = await fetch(
-          `${process.env.REACT_APP_URL_API}${endpoints.delete}${endpoints.id}`,
+          `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.delete}${endpoints.slash}${id}`,
           {
             method: "DELETE",
             headers: {
