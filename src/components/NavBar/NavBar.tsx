@@ -1,4 +1,5 @@
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { faHouseChimney } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import { endpoints } from "../../routers/endpoints";
@@ -11,10 +12,10 @@ export const NavBar = (): JSX.Element => {
         <FontAwesomeIcon
           name="home"
           className="nav__icon"
-          icon={solid("tree")}
+          icon={faHouseChimney}
         />
       </NavLink>
-      <NavLink to={endpoints.home} title="create tip">
+      <NavLink to={"hola"} title="create tip">
         <FontAwesomeIcon
           name="create tip"
           className="nav__icon"
@@ -28,7 +29,7 @@ export const NavBar = (): JSX.Element => {
           icon={solid("clipboard-list")}
         />
       </NavLink>
-      <NavLink to={endpoints.myTips} title="log out">
+      <NavLink to={"hola"} title="log out">
         <FontAwesomeIcon
           name="log out"
           className="nav__icon"

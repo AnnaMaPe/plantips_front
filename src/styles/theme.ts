@@ -5,6 +5,7 @@ export const theme: DefaultTheme = {
     primary: "#325a3e",
     secondary: "#afe195",
     terciary: "#999",
+    activeLink: "#dc8855",
     warning: "#d65745",
   },
   fonts: {
