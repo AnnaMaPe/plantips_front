@@ -1,10 +1,11 @@
 import { useCallback } from "react";
 import { endpoints } from "../../routers/endpoints";
 import {
+  createTipActionCreator,
   deleteTipByIdActionCreator,
   loadAllTipsActionCreator,
 } from "../../store/features/tips/tipsSlice";
-import { TipsFromApi } from "../../store/features/tips/types";
+import { TipsFromApi, TipStructure } from "../../store/features/tips/types";
 import {
   openModalActionCreator,
   setLoaderActioncreator,
@@ -34,7 +35,9 @@ const useApi = () => {
       if (!response.ok) {
         const errorMessage = "Not possible to load Tips";
 
-        throw new Error(errorMessage);
+        const errorMessageError = new Error(errorMessage);
+
+        throw errorMessageError;
       }
       const { tips } = (await response.json()) as TipsFromApi;
 
@@ -132,8 +135,50 @@ const useApi = () => {
     },
     [dispatch, token]
   );
+  const createTip = useCallback(
+    async (tip: TipStructure) => {
+      try {
+        dispatch(setLoaderActioncreator());
+        const response = await fetch(
+          `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.create}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-  return { loadAllTips, loadMyTips, deleteTipById };
+        if (!response.ok) {
+          const errorMessage = "Tip was not created. Try again!";
+
+          throw new Error(errorMessage);
+        }
+
+        dispatch(createTipActionCreator(tip));
+        dispatch(unsetLoaderActionCreator());
+        dispatch(
+          openModalActionCreator({
+            isError: false,
+            isSuccess: true,
+            message: "Tip was successfully created",
+          })
+        );
+      } catch (error: unknown) {
+        dispatch(
+          openModalActionCreator({
+            isError: true,
+            message: (error as Error).message,
+            isSuccess: false,
+          })
+        );
+      }
+    },
+    [dispatch, token]
+  );
+
+  return { loadAllTips, loadMyTips, deleteTipById, createTip };
 };
 
 export default useApi;

@@ -11,7 +11,7 @@ export const NavBar = (): JSX.Element => {
 
   return (
     <NavBarStyled className="nav">
-      <NavLink to={endpoints.home} title="home">
+      <NavLink to={endpoints.slash} title="home">
         <FontAwesomeIcon
           name="home"
           className="nav__icon"

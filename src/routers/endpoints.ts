@@ -3,11 +3,11 @@ interface Endpoints {
   users: string;
   login: string;
   tips: string;
-  home: string;
   myTips: string;
   delete: string;
   slash: string;
   findId: string;
+  create: string;
 }
 
 export const endpoints: Endpoints = {
@@ -15,9 +15,9 @@ export const endpoints: Endpoints = {
   users: "/users",
   login: "/login",
   tips: "/tips",
-  home: "/",
   myTips: "/my-tips",
   delete: "/delete",
   slash: "/",
   findId: "/:id",
+  create: "/create",
 };
