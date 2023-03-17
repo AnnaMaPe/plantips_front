@@ -5,6 +5,7 @@ import { mockListOfTips, monstera } from "../../mocks/tipsMocks";
 import { Wrapper } from "../../mocks/Wrapper";
 import { store } from "../../store";
 import {
+  createTipActionCreator,
   deleteTipByIdActionCreator,
   loadAllTipsActionCreator,
 } from "../../store/features/tips/tipsSlice";
@@ -137,6 +138,49 @@ describe("Given the useApi custom hook", () => {
       await deleteTipById(mockedId);
 
       expect(dispatchSpy).toHaveBeenCalledWith(openModalActionCreator(modal));
+    });
+  });
+
+  describe("When the createTip function it is called", () => {
+    test("Then it should call the dispatch method", async () => {
+      const {
+        result: {
+          current: { createTip },
+        },
+      } = renderHook(() => useApi(), { wrapper: Wrapper });
+
+      await createTip(monstera);
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        2,
+        createTipActionCreator(monstera)
+      );
+    });
+  });
+
+  describe("When the createTip function is called and the response fails", () => {
+    beforeEach(() => {
+      server.resetHandlers(...errorHandlers);
+    });
+    test("Then it should call the dispatch with the openModalActionCreator to show an error modal with the text 'Not possible to load your Tips'", async () => {
+      const {
+        result: {
+          current: { createTip },
+        },
+      } = renderHook(() => useApi(), { wrapper: Wrapper });
+
+      const modal: ModalPayload = {
+        isError: true,
+        isSuccess: false,
+        message: "Tip was not created. Try again!",
+      };
+
+      await createTip(monstera);
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        2,
+        openModalActionCreator(modal)
+      );
     });
   });
 });
