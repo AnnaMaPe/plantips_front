@@ -34,9 +34,7 @@ const useApi = () => {
       if (!response.ok) {
         const errorMessage = "Not possible to load Tips";
 
-        const errorMessageError = new Error(errorMessage);
-
-        throw errorMessageError;
+        throw new Error(errorMessage);
       }
       const { tips } = (await response.json()) as TipsFromApi;
 

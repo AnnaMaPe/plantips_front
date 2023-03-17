@@ -1,4 +1,5 @@
 import {
+  createTipActionCreator,
   deleteTipByIdActionCreator,
   loadAllTipsActionCreator,
   tipsReducer,
@@ -30,6 +31,20 @@ describe("Given a tipsReducer reducer", () => {
       const result = tipsReducer(initialTipState, deleteTipByIdAction);
       const updatedTipsList = {
         tips: [maranta],
+      };
+
+      expect(updatedTipsList).toStrictEqual(result);
+    });
+  });
+
+  describe("When it receives a monstera-tip and the createTip action", () => {
+    test("Then it should update an empty list with the monstera", () => {
+      const initialTipState: TipsFromApi = { tips: [] };
+
+      const createTipAction = createTipActionCreator(monstera);
+      const result = tipsReducer(initialTipState, createTipAction);
+      const updatedTipsList = {
+        tips: [monstera],
       };
 
       expect(updatedTipsList).toStrictEqual(result);

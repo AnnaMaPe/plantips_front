@@ -25,7 +25,7 @@ describe("Given a TipCard component", () => {
   });
 
   describe("When it is rendered with a Monstera that was shared by the logged user", () => {
-    test("Then it should show an icon with the aria-label 'edit'", () => {
+    test("Then it should show an icon with the aria-label 'delete'", () => {
       const expectedLabel = /delete/i;
 
       renderRouterWithProviders(
