@@ -135,6 +135,7 @@ const useApi = () => {
     },
     [dispatch, token]
   );
+
   const createTip = useCallback(
     async (tip: TipStructure) => {
       try {

@@ -49,6 +49,10 @@ button {
   width: 100vw;
 }
 
+input, select, textarea {
+  outline: none;
+}
+
 
 `;
 
