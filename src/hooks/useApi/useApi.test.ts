@@ -12,6 +12,12 @@ import { ModalPayload } from "../../store/features/ui/types";
 import { openModalActionCreator } from "../../store/features/ui/uiSlice";
 import useApi from "./useApi";
 
+const mockedUsedNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockedUsedNavigate,
+}));
+
 afterEach(() => {
   jest.clearAllMocks();
 });

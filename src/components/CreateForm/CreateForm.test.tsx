@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { renderWithProviders } from "../../testUtils/renderWithProviders";
+import { renderRouterWithProviders } from "../../testUtils/renderRouterWithProviders";
 import { CreateForm } from "./CreateForm";
 
 describe("Given a CreateForm component", () => {
@@ -7,7 +7,7 @@ describe("Given a CreateForm component", () => {
     test("The it should show an input with a placeholder with the text 'Plant's common name'", () => {
       const expectedTest = /plant's common name/i;
 
-      renderWithProviders(<CreateForm />);
+      renderRouterWithProviders({}, <CreateForm />);
       const inputsPlaceholder = screen.getByPlaceholderText(expectedTest);
 
       expect(inputsPlaceholder).toBeInTheDocument();
