@@ -1,8 +1,9 @@
 import { CreateForm } from "../../components/CreateForm/CreateForm";
+import { CreatePageStyled } from "./CreatePageStyled";
 
 export const CreatePage = (): JSX.Element => {
   return (
-    <>
+    <CreatePageStyled>
       <div className="create__text">
         <h1 className="create__title">Share a tip</h1>
         <span className="create__description">
@@ -10,6 +11,6 @@ export const CreatePage = (): JSX.Element => {
         </span>
       </div>
       <CreateForm />
-    </>
+    </CreatePageStyled>
   );
 };
