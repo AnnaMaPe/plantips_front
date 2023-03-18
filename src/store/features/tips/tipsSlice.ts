@@ -21,8 +21,9 @@ const tipsSlice = createSlice({
 
       return { tips: updatedTipsList };
     },
-    createTip: (currentTipState, action: PayloadAction<TipStructure>) => ({
-      tips: [...currentTipState.tips, action.payload],
+    loadTipById: (currentTipsState, action: PayloadAction<TipStructure>) => ({
+      ...currentTipsState,
+      tips: [action.payload],
     }),
   },
 });
@@ -31,5 +32,5 @@ export const tipsReducer = tipsSlice.reducer;
 export const {
   loadAllTips: loadAllTipsActionCreator,
   deleteTipById: deleteTipByIdActionCreator,
-  createTip: createTipActionCreator,
+  loadTipById: loadTipByIdActionCreator,
 } = tipsSlice.actions;

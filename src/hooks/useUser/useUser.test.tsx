@@ -92,7 +92,7 @@ describe("Given the useUser custom hook", () => {
       const modal: ModalPayload = {
         isError: false,
         isSuccess: true,
-        message: "You were successfully logedout!",
+        message: "You were successfully logged out!",
       };
 
       expect(dispatchSpy).toHaveBeenCalledWith(openModalActionCreator(modal));
