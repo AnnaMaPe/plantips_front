@@ -1,17 +1,22 @@
 import { renderHook } from "@testing-library/react";
 import { errorHandlers } from "../../mocks/handlers";
 import { server } from "../../mocks/server";
-import { mockListOfTips, monstera } from "../../mocks/tipsMocks";
+import { maranta, mockListOfTips, monstera } from "../../mocks/tipsMocks";
 import { Wrapper } from "../../mocks/Wrapper";
 import { store } from "../../store";
 import {
-  createTipActionCreator,
   deleteTipByIdActionCreator,
   loadAllTipsActionCreator,
 } from "../../store/features/tips/tipsSlice";
 import { ModalPayload } from "../../store/features/ui/types";
 import { openModalActionCreator } from "../../store/features/ui/uiSlice";
 import useApi from "./useApi";
+
+const mockedUsedNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockedUsedNavigate,
+}));
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -35,6 +40,7 @@ describe("Given the useApi custom hook", () => {
       );
     });
   });
+
   describe("When the loadAllTips function is called and the response fails", () => {
     beforeEach(() => {
       server.resetHandlers(...errorHandlers);
@@ -142,7 +148,7 @@ describe("Given the useApi custom hook", () => {
   });
 
   describe("When the createTip function it is called", () => {
-    test("Then it should call the dispatch method", async () => {
+    test("Then it should call the dispatch method with setModalActionCreator with the message 'The coin was created'", async () => {
       const {
         result: {
           current: { createTip },
@@ -151,9 +157,19 @@ describe("Given the useApi custom hook", () => {
 
       await createTip(monstera);
 
+      const successMessage = "Tip was successfully created";
+
+      const modal: ModalPayload = {
+        isError: false,
+        isSuccess: true,
+        message: successMessage,
+      };
+
+      await createTip(maranta);
+
       expect(dispatchSpy).toHaveBeenNthCalledWith(
-        2,
-        createTipActionCreator(monstera)
+        3,
+        openModalActionCreator(modal)
       );
     });
   });
@@ -178,7 +194,7 @@ describe("Given the useApi custom hook", () => {
       await createTip(monstera);
 
       expect(dispatchSpy).toHaveBeenNthCalledWith(
-        2,
+        3,
         openModalActionCreator(modal)
       );
     });

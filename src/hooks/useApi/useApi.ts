@@ -1,11 +1,14 @@
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { endpoints } from "../../routers/endpoints";
 import {
-  createTipActionCreator,
   deleteTipByIdActionCreator,
   loadAllTipsActionCreator,
 } from "../../store/features/tips/tipsSlice";
-import { TipsFromApi, TipStructure } from "../../store/features/tips/types";
+import {
+  TipsFromApi,
+  TipStructureToBeCreated,
+} from "../../store/features/tips/types";
 import {
   openModalActionCreator,
   setLoaderActioncreator,
@@ -16,6 +19,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 const useApi = () => {
   const dispatch = useAppDispatch();
   const { token } = useAppSelector((state) => state.user);
+  const navigateTo = useNavigate();
 
   const loadAllTips = useCallback(async () => {
     try {
@@ -137,13 +141,15 @@ const useApi = () => {
   );
 
   const createTip = useCallback(
-    async (tip: TipStructure) => {
+    async (tip: TipStructureToBeCreated) => {
       try {
         dispatch(setLoaderActioncreator());
+
         const response = await fetch(
           `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.create}`,
           {
             method: "POST",
+            body: JSON.stringify(tip),
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
@@ -157,8 +163,8 @@ const useApi = () => {
           throw new Error(errorMessage);
         }
 
-        dispatch(createTipActionCreator(tip));
         dispatch(unsetLoaderActionCreator());
+        navigateTo(endpoints.myTips);
         dispatch(
           openModalActionCreator({
             isError: false,
@@ -167,6 +173,7 @@ const useApi = () => {
           })
         );
       } catch (error: unknown) {
+        dispatch(unsetLoaderActionCreator());
         dispatch(
           openModalActionCreator({
             isError: true,
@@ -176,7 +183,7 @@ const useApi = () => {
         );
       }
     },
-    [dispatch, token]
+    [dispatch, navigateTo, token]
   );
 
   return { loadAllTips, loadMyTips, deleteTipById, createTip };
