@@ -36,6 +36,15 @@ export const CreateForm = (): JSX.Element => {
     await createTip(createData);
   };
 
+  const isDisabled =
+    createData.commonName === "" ||
+    createData.scientificName === "" ||
+    createData.image === "" ||
+    createData.careLevel === "" ||
+    createData.light === "" ||
+    createData.water === "" ||
+    createData.tip === "";
+
   return (
     <CreateFormStyled className="form" onSubmit={onSubmitHandler}>
       <input
@@ -120,7 +129,7 @@ export const CreateForm = (): JSX.Element => {
       />
       <Button
         className="form__button"
-        isDisabled={false}
+        isDisabled={isDisabled}
         text="Create your Tip"
       />
     </CreateFormStyled>

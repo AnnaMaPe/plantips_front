@@ -144,8 +144,7 @@ const useApi = () => {
         dispatch(setLoaderActioncreator());
 
         const response = await fetch(
-          // `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.create}`,
-          "http://localhost:4000/tips/create",
+          `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.create}`,
           {
             method: "POST",
             body: JSON.stringify(tip),
