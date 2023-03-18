@@ -18,7 +18,7 @@ export const NavBar = (): JSX.Element => {
           icon={faHouseChimney}
         />
       </NavLink>
-      <NavLink to={"hola"} title="create tip">
+      <NavLink to={endpoints.create} title="create tip">
         <FontAwesomeIcon
           name="create tip"
           className="nav__icon"
