@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { endpoints } from "../../routers/endpoints";
 import {
   deleteTipByIdActionCreator,
@@ -18,6 +19,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 const useApi = () => {
   const dispatch = useAppDispatch();
   const { token } = useAppSelector((state) => state.user);
+  const navigateTo = useNavigate();
 
   const loadAllTips = useCallback(async () => {
     try {
@@ -162,6 +164,7 @@ const useApi = () => {
         }
 
         dispatch(unsetLoaderActionCreator());
+        navigateTo(endpoints.myTips);
         dispatch(
           openModalActionCreator({
             isError: false,
@@ -180,7 +183,7 @@ const useApi = () => {
         );
       }
     },
-    [dispatch, token]
+    [dispatch, navigateTo, token]
   );
 
   return { loadAllTips, loadMyTips, deleteTipById, createTip };
