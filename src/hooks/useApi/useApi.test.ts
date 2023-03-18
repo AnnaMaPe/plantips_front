@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import { errorHandlers } from "../../mocks/handlers";
 import { server } from "../../mocks/server";
-import { mockListOfTips, monstera } from "../../mocks/tipsMocks";
+import { maranta, mockListOfTips, monstera } from "../../mocks/tipsMocks";
 import { Wrapper } from "../../mocks/Wrapper";
 import { store } from "../../store";
 import {
@@ -147,22 +147,32 @@ describe("Given the useApi custom hook", () => {
     });
   });
 
-  // describe("When the createTip function it is called", () => {
-  //   test("Then it should call the dispatch method", async () => {
-  //     const {
-  //       result: {
-  //         current: { createTip },
-  //       },
-  //     } = renderHook(() => useApi(), { wrapper: Wrapper });
+  describe("When the createTip function it is called", () => {
+    test("Then it should call the dispatch method with setModalActionCreator with the message 'The coin was created'", async () => {
+      const {
+        result: {
+          current: { createTip },
+        },
+      } = renderHook(() => useApi(), { wrapper: Wrapper });
 
-  //     await createTip(monstera);
+      await createTip(monstera);
 
-  //     expect(dispatchSpy).toHaveBeenNthCalledWith(
-  //       2,
-  //       createTipActionCreator(monstera)
-  //     );
-  //   });
-  // });
+      const successMessage = "Tip was successfully created";
+
+      const modal: ModalPayload = {
+        isError: false,
+        isSuccess: true,
+        message: successMessage,
+      };
+
+      await createTip(maranta);
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        3,
+        openModalActionCreator(modal)
+      );
+    });
+  });
 
   describe("When the createTip function is called and the response fails", () => {
     beforeEach(() => {
