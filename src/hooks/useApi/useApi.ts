@@ -4,9 +4,11 @@ import { endpoints } from "../../routers/endpoints";
 import {
   deleteTipByIdActionCreator,
   loadAllTipsActionCreator,
+  loadTipByIdActionCreator,
 } from "../../store/features/tips/tipsSlice";
 import {
   TipsFromApi,
+  TipStructure,
   TipStructureToBeCreated,
 } from "../../store/features/tips/types";
 import {
@@ -39,9 +41,7 @@ const useApi = () => {
       if (!response.ok) {
         const errorMessage = "Not possible to load Tips";
 
-        const errorMessageError = new Error(errorMessage);
-
-        throw errorMessageError;
+        throw new Error(errorMessage);
       }
       const { tips } = (await response.json()) as TipsFromApi;
 
@@ -186,7 +186,46 @@ const useApi = () => {
     [dispatch, navigateTo, token]
   );
 
-  return { loadAllTips, loadMyTips, deleteTipById, createTip };
+  const loadTipById = useCallback(
+    async (id: string) => {
+      try {
+        dispatch(setLoaderActioncreator());
+
+        const response = await fetch(
+          `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.slash}${id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          const errorMessage = "Not possible to show the Tip";
+
+          throw new Error(errorMessage);
+        }
+
+        const tip = (await response.json()) as TipStructure;
+
+        dispatch(loadTipByIdActionCreator(tip));
+        dispatch(unsetLoaderActionCreator());
+      } catch (error: unknown) {
+        dispatch(
+          openModalActionCreator({
+            isError: true,
+            message: (error as Error).message,
+            isSuccess: false,
+          })
+        );
+      }
+    },
+    [dispatch, token]
+  );
+
+  return { loadAllTips, loadMyTips, deleteTipById, createTip, loadTipById };
 };
 
 export default useApi;

@@ -21,7 +21,10 @@ const tipsSlice = createSlice({
 
       return { tips: updatedTipsList };
     },
-    loadTipById: (currentTipsState, action: PayloadAction<TipStructure>) => ({
+    loadTipById: (
+      currentTipsState,
+      action: PayloadAction<TipStructure>
+    ): TipsFromApi => ({
       ...currentTipsState,
       tips: [action.payload],
     }),
