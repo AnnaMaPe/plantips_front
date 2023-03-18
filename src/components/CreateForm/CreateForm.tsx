@@ -84,12 +84,11 @@ export const CreateForm = (): JSX.Element => {
           Level of care required
         </option>
         <option value="Ideal for beginners">Ideal for beginners</option>
-        <option value="Only for connoisseurs">Only for connoisseurs</option>
-        <option value="Best for experts">Best for experts</option>
+        <option value="Best for connoisseurs">Best for connoisseurs</option>
+        <option value="Recommended for experts">Recommended for experts</option>
       </select>
       <select
         className="form__field form__select"
-        placeholder="Light"
         name="light"
         aria-label="light"
         onChange={handleCreateDataChange}
@@ -116,8 +115,8 @@ export const CreateForm = (): JSX.Element => {
         <option value="Every other day">Every other day</option>
         <option value="Once a week">Once a week</option>
         <option value="Twice a wee">Twice week</option>
-        <option value="Twice a month">Twice a mocth</option>
-        <option value="Once a month">Once a mocth</option>
+        <option value="Twice a month">Twice a month</option>
+        <option value="Once a month">Once a month</option>
       </select>
       <textarea
         className="form__field form__tip"
