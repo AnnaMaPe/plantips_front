@@ -72,7 +72,7 @@ const useUser = (): UseUserStructure => {
       openModalActionCreator({
         isError: false,
         isSuccess: true,
-        message: "You were successfully logedout!",
+        message: "You were successfully logged out!",
       })
     );
   };

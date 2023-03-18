@@ -1,7 +1,7 @@
 import {
-  createTipActionCreator,
   deleteTipByIdActionCreator,
   loadAllTipsActionCreator,
+  loadTipByIdActionCreator,
   tipsReducer,
 } from "./tipsSlice";
 import { TipsFromApi } from "./types";
@@ -37,12 +37,12 @@ describe("Given a tipsReducer reducer", () => {
     });
   });
 
-  describe("When it receives a monstera-tip and the createTip action", () => {
-    test("Then it should update an empty list with the monstera", () => {
-      const initialTipState: TipsFromApi = { tips: [] };
+  describe("When it receives a monstera-tip and the loadTipById action", () => {
+    test("Then it should update the list that contains a maranta and show only the monstera", () => {
+      const initialTipState: TipsFromApi = { tips: [maranta] };
 
-      const createTipAction = createTipActionCreator(monstera);
-      const result = tipsReducer(initialTipState, createTipAction);
+      const loadTipByIdAction = loadTipByIdActionCreator(monstera);
+      const result = tipsReducer(initialTipState, loadTipByIdAction);
       const updatedTipsList = {
         tips: [monstera],
       };

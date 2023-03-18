@@ -85,7 +85,7 @@ export const CreateForm = (): JSX.Element => {
         </option>
         <option value="Ideal for beginners">Ideal for beginners</option>
         <option value="Best for connoisseurs">Best for connoisseurs</option>
-        <option value="Recommended for experts">Recommended for experts</option>
+        <option value="Only for experts">Only for experts</option>
       </select>
       <select
         className="form__field form__select"
