@@ -1,11 +1,13 @@
 import { useCallback } from "react";
 import { endpoints } from "../../routers/endpoints";
 import {
-  createTipActionCreator,
   deleteTipByIdActionCreator,
   loadAllTipsActionCreator,
 } from "../../store/features/tips/tipsSlice";
-import { TipsFromApi, TipStructure } from "../../store/features/tips/types";
+import {
+  TipsFromApi,
+  TipStructureToBeCreated,
+} from "../../store/features/tips/types";
 import {
   openModalActionCreator,
   setLoaderActioncreator,
@@ -137,13 +139,16 @@ const useApi = () => {
   );
 
   const createTip = useCallback(
-    async (tip: TipStructure) => {
+    async (tip: TipStructureToBeCreated) => {
       try {
         dispatch(setLoaderActioncreator());
+
         const response = await fetch(
-          `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.create}`,
+          // `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.create}`,
+          "http://localhost:4000/tips/create",
           {
             method: "POST",
+            body: JSON.stringify(tip),
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
@@ -157,7 +162,6 @@ const useApi = () => {
           throw new Error(errorMessage);
         }
 
-        dispatch(createTipActionCreator(tip));
         dispatch(unsetLoaderActionCreator());
         dispatch(
           openModalActionCreator({
@@ -167,6 +171,7 @@ const useApi = () => {
           })
         );
       } catch (error: unknown) {
+        dispatch(unsetLoaderActionCreator());
         dispatch(
           openModalActionCreator({
             isError: true,

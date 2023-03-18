@@ -1,5 +1,4 @@
-export interface TipStructure {
-  id: string;
+export interface TipStructureToBeCreated {
   commonName: string;
   scientificName: string;
   careLevel: string;
@@ -8,6 +7,10 @@ export interface TipStructure {
   tip: string;
   image: string;
   sharedBy: string;
+}
+
+export interface TipStructure extends TipStructureToBeCreated {
+  id: string;
 }
 
 export type TipsStructure = TipStructure[];

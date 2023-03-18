@@ -35,6 +35,7 @@ describe("Given the useApi custom hook", () => {
       );
     });
   });
+
   describe("When the loadAllTips function is called and the response fails", () => {
     beforeEach(() => {
       server.resetHandlers(...errorHandlers);
