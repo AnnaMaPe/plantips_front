@@ -7,6 +7,7 @@ import { store } from "../../store";
 import {
   deleteTipByIdActionCreator,
   loadAllTipsActionCreator,
+  loadTipByIdActionCreator,
 } from "../../store/features/tips/tipsSlice";
 import { ModalPayload } from "../../store/features/ui/types";
 import { openModalActionCreator } from "../../store/features/ui/uiSlice";
@@ -195,6 +196,49 @@ describe("Given the useApi custom hook", () => {
 
       expect(dispatchSpy).toHaveBeenNthCalledWith(
         3,
+        openModalActionCreator(modal)
+      );
+    });
+  });
+
+  describe("When the loadTipById function it is called", () => {
+    test("Then it should call the dispatch method", async () => {
+      const {
+        result: {
+          current: { loadTipById },
+        },
+      } = renderHook(() => useApi(), { wrapper: Wrapper });
+
+      await loadTipById(monstera.id);
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        2,
+        loadTipByIdActionCreator(monstera)
+      );
+    });
+  });
+
+  describe("When the loadTipById function is called and the response fails", () => {
+    beforeEach(() => {
+      server.resetHandlers(...errorHandlers);
+    });
+    test("Then it should call the dispatch with the openModalActionCreator to show an error modal with the text 'Not possible to load your Tips'", async () => {
+      const {
+        result: {
+          current: { loadTipById },
+        },
+      } = renderHook(() => useApi(), { wrapper: Wrapper });
+
+      const modal: ModalPayload = {
+        isError: true,
+        isSuccess: false,
+        message: "Not possible to show the Tip",
+      };
+
+      await loadTipById(monstera.id);
+
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        2,
         openModalActionCreator(modal)
       );
     });

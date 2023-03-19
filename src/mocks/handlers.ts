@@ -25,6 +25,10 @@ export const handlers = [
     `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.create}`,
     async (req, res, ctx) => res(ctx.status(200), ctx.json(tipsFromApi))
   ),
+  rest.get(
+    `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.findId}`,
+    async (req, res, ctx) => res(ctx.status(200), ctx.json(tipsFromApi))
+  ),
 ];
 
 export const errorHandlers = [
@@ -48,6 +52,10 @@ export const errorHandlers = [
   ),
   rest.post(
     `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.create}`,
+    async (req, res, ctx) => res(ctx.status(500))
+  ),
+  rest.get(
+    `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.findId}`,
     async (req, res, ctx) => res(ctx.status(500))
   ),
 ];
