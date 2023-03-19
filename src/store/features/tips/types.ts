@@ -17,4 +17,5 @@ export type TipsStructure = TipStructure[];
 
 export interface TipsFromApi {
   tips: TipsStructure;
+  detailTip: TipStructure;
 }

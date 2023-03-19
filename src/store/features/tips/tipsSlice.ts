@@ -1,7 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TipsFromApi, TipsStructure, TipStructure } from "./types";
 
-const tipsInitialState: TipsFromApi = { tips: [] };
+export const tipsInitialState: TipsFromApi = {
+  tips: [],
+  detailTip: {
+    id: "",
+    commonName: "",
+    scientificName: "",
+    careLevel: "",
+    water: "",
+    light: "",
+    tip: "",
+    image: "",
+    sharedBy: "",
+  },
+};
 
 const tipsSlice = createSlice({
   name: "tips",
@@ -14,19 +27,18 @@ const tipsSlice = createSlice({
       ...currentTipsState,
       tips: [...action.payload],
     }),
-    deleteTipById: (currentTipsState, action: PayloadAction<string>) => {
-      const updatedTipsList = currentTipsState.tips.filter(
-        (tip) => tip.id !== action.payload
-      );
 
-      return { tips: updatedTipsList };
-    },
+    deleteTipById: (currentTipsState, action: PayloadAction<string>) => ({
+      ...currentTipsState,
+      tips: currentTipsState.tips.filter((tip) => tip.id !== action.payload),
+    }),
+
     loadTipById: (
       currentTipsState,
       action: PayloadAction<TipStructure>
     ): TipsFromApi => ({
       ...currentTipsState,
-      tips: [action.payload],
+      detailTip: action.payload,
     }),
   },
 });

@@ -29,7 +29,20 @@ export const maranta: TipStructure = {
 };
 export const mockListOfTips: TipsStructure = [monstera];
 
-export const tipsFromApi: TipsFromApi = { tips: [monstera] };
+export const tipsFromApi: TipsFromApi = {
+  tips: [monstera],
+  detailTip: {
+    id: "",
+    commonName: "",
+    scientificName: "",
+    careLevel: "",
+    water: "",
+    light: "",
+    tip: "",
+    image: "",
+    sharedBy: "",
+  },
+};
 
 export const marantaToBeCreated = {
   commonName: "Maranta lemon",
