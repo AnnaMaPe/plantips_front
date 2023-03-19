@@ -21,5 +21,5 @@ export const paths: Paths = {
   slash: "/",
   findId: "/:id",
   create: "/create",
-  detail: "/detail",
+  detail: "/tip",
 };

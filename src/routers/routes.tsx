@@ -17,7 +17,7 @@ const routes: RouteObject[] = [
       { path: paths.login, element: <LoginPage /> },
       { path: paths.myTips, element: <MyTipsPage /> },
       { path: paths.create, element: <CreatePage /> },
-      { path: "/detail/:id", element: <DetailPage /> },
+      { path: `${paths.detail}${paths.findId}`, element: <DetailPage /> },
     ],
   },
 ];

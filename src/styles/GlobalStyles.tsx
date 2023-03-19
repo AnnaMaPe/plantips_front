@@ -29,7 +29,7 @@ a:visited {
   text-decoration: none;
 }
 
-h1, h2, h3{
+h1, h2, h3, p{
   margin: 0;
 }
 
