@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { endpoints } from "../../routers/endpoints";
+import { paths } from "../../routers/paths";
 import {
   deleteTipByIdActionCreator,
   loadAllTipsActionCreator,
@@ -27,7 +27,7 @@ const useApi = () => {
       dispatch(setLoaderActioncreator());
 
       const response = await fetch(
-        `${process.env.REACT_APP_URL_API}${endpoints.tips}`,
+        `${process.env.REACT_APP_URL_API}${paths.tips}`,
         {
           method: "GET",
           headers: {
@@ -63,7 +63,7 @@ const useApi = () => {
     try {
       dispatch(setLoaderActioncreator());
       const response = await fetch(
-        `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.myTips}`,
+        `${process.env.REACT_APP_URL_API}${paths.tips}${paths.myTips}`,
         {
           method: "GET",
           headers: { Authorization: `Bearer ${token}` },
@@ -101,7 +101,7 @@ const useApi = () => {
         dispatch(setLoaderActioncreator());
 
         const response = await fetch(
-          `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.delete}${endpoints.slash}${id}`,
+          `${process.env.REACT_APP_URL_API}${paths.tips}${paths.delete}${paths.slash}${id}`,
           {
             method: "DELETE",
             headers: {
@@ -145,7 +145,7 @@ const useApi = () => {
         dispatch(setLoaderActioncreator());
 
         const response = await fetch(
-          `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.create}`,
+          `${process.env.REACT_APP_URL_API}${paths.tips}${paths.create}`,
           {
             method: "POST",
             body: JSON.stringify(tip),
@@ -163,7 +163,7 @@ const useApi = () => {
         }
 
         dispatch(unsetLoaderActionCreator());
-        navigateTo(endpoints.myTips);
+        navigateTo(paths.myTips);
         dispatch(
           openModalActionCreator({
             isError: false,
@@ -191,7 +191,7 @@ const useApi = () => {
         dispatch(setLoaderActioncreator());
 
         const response = await fetch(
-          `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.slash}${id}`,
+          `${process.env.REACT_APP_URL_API}${paths.tips}${paths.slash}${id}`,
           {
             method: "GET",
             headers: {
@@ -207,9 +207,9 @@ const useApi = () => {
           throw new Error(errorMessage);
         }
 
-        const { tips } = (await response.json()) as TipsFromApi;
+        const { tip } = (await response.json()) as TipsFromApi;
 
-        dispatch(loadTipByIdActionCreator(tips[0]));
+        dispatch(loadTipByIdActionCreator(tip));
         dispatch(unsetLoaderActionCreator());
       } catch (error: unknown) {
         dispatch(

@@ -46,14 +46,14 @@ describe("Given a tipsReducer reducer", () => {
     test("Then it should update the list that contains a maranta and show only the monstera", () => {
       const initialTipState: TipsFromApi = {
         ...tipsInitialState,
-        detailTip: maranta,
+        tip: maranta,
       };
 
       const loadTipByIdAction = loadTipByIdActionCreator(monstera);
       const result = tipsReducer(initialTipState, loadTipByIdAction);
       const updatedTipsList = {
         ...tipsInitialState,
-        detailTip: monstera,
+        tip: monstera,
       };
 
       expect(updatedTipsList).toStrictEqual(result);

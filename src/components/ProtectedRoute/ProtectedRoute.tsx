@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { endpoints } from "../../routers/endpoints";
+import { paths } from "../../routers/paths";
 import { useAppSelector } from "../../store/hooks";
 
 interface ProtectedRouteProps {
@@ -11,5 +11,5 @@ export const ProtectedRoute = ({
 }: ProtectedRouteProps): JSX.Element => {
   const { token } = useAppSelector((state) => state.user);
 
-  return token ? element : <Navigate to={endpoints.login} replace={true} />;
+  return token ? element : <Navigate to={paths.login} replace={true} />;
 };

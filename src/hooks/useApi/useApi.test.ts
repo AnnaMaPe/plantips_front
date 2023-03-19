@@ -149,7 +149,7 @@ describe("Given the useApi custom hook", () => {
   });
 
   describe("When the createTip function it is called", () => {
-    test("Then it should call the dispatch method with setModalActionCreator with the message 'The coin was created'", async () => {
+    test("Then it should call the dispatch method with setModalActionCreator with the message 'Tip was successfully created'", async () => {
       const {
         result: {
           current: { createTip },

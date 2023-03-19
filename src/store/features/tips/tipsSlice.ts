@@ -3,7 +3,7 @@ import { TipsFromApi, TipsStructure, TipStructure } from "./types";
 
 export const tipsInitialState: TipsFromApi = {
   tips: [],
-  detailTip: {
+  tip: {
     id: "",
     commonName: "",
     scientificName: "",
@@ -38,7 +38,7 @@ const tipsSlice = createSlice({
       action: PayloadAction<TipStructure>
     ): TipsFromApi => ({
       ...currentTipsState,
-      detailTip: action.payload,
+      tip: action.payload,
     }),
   },
 });
