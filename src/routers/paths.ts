@@ -1,4 +1,4 @@
-interface Endpoints {
+interface Paths {
   plantips: string;
   users: string;
   login: string;
@@ -8,9 +8,10 @@ interface Endpoints {
   slash: string;
   findId: string;
   create: string;
+  detail: string;
 }
 
-export const endpoints: Endpoints = {
+export const paths: Paths = {
   plantips: "/plantips",
   users: "/users",
   login: "/login",
@@ -20,4 +21,5 @@ export const endpoints: Endpoints = {
   slash: "/",
   findId: "/:id",
   create: "/create",
+  detail: "/detail",
 };
