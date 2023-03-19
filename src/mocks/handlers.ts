@@ -1,61 +1,62 @@
 import { rest } from "msw";
-import { endpoints } from "../routers/endpoints";
+import { paths } from "../routers/paths";
+
 import { tipsFromApi } from "./tipsMocks";
 
 export const handlers = [
   rest.post(
-    `${process.env.REACT_APP_URL_API}${endpoints.users}${endpoints.login}`,
+    `${process.env.REACT_APP_URL_API}${paths.users}${paths.login}`,
     async (req, res, ctx) =>
       res(ctx.status(200), ctx.json({ token: "ThisIsAToken" }))
   ),
 
   rest.get(
-    `${process.env.REACT_APP_URL_API}${endpoints.tips}`,
+    `${process.env.REACT_APP_URL_API}${paths.tips}`,
     async (req, res, ctx) => res(ctx.status(200), ctx.json(tipsFromApi))
   ),
   rest.get(
-    `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.myTips}`,
+    `${process.env.REACT_APP_URL_API}${paths.tips}${paths.myTips}`,
     async (req, res, ctx) => res(ctx.status(200), ctx.json(tipsFromApi))
   ),
   rest.delete(
-    `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.delete}${endpoints.findId}`,
+    `${process.env.REACT_APP_URL_API}${paths.tips}${paths.delete}${paths.findId}`,
     async (req, res, ctx) => res(ctx.status(200), ctx.json(tipsFromApi))
   ),
   rest.post(
-    `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.create}`,
-    async (req, res, ctx) => res(ctx.status(200), ctx.json(tipsFromApi))
+    `${process.env.REACT_APP_URL_API}${paths.tips}${paths.create}`,
+    async (req, res, ctx) => res(ctx.status(201), ctx.json(tipsFromApi))
   ),
   rest.get(
-    `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.findId}`,
+    `${process.env.REACT_APP_URL_API}${paths.tips}${paths.findId}`,
     async (req, res, ctx) => res(ctx.status(200), ctx.json(tipsFromApi))
   ),
 ];
 
 export const errorHandlers = [
   rest.post(
-    `${process.env.REACT_APP_URL_API}${endpoints.users}${endpoints.login}`,
+    `${process.env.REACT_APP_URL_API}${paths.users}${paths.login}`,
     async (req, res, ctx) => res(ctx.status(400))
   ),
 
   rest.get(
-    `${process.env.REACT_APP_URL_API}${endpoints.tips}`,
+    `${process.env.REACT_APP_URL_API}${paths.tips}`,
     async (req, res, ctx) => res(ctx.status(500))
   ),
 
   rest.get(
-    `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.myTips}`,
+    `${process.env.REACT_APP_URL_API}${paths.tips}${paths.myTips}`,
     async (req, res, ctx) => res(ctx.status(500))
   ),
   rest.delete(
-    `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.delete}${endpoints.findId}`,
+    `${process.env.REACT_APP_URL_API}${paths.tips}${paths.delete}${paths.findId}`,
     async (req, res, ctx) => res(ctx.status(500))
   ),
   rest.post(
-    `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.create}`,
+    `${process.env.REACT_APP_URL_API}${paths.tips}${paths.create}`,
     async (req, res, ctx) => res(ctx.status(500))
   ),
   rest.get(
-    `${process.env.REACT_APP_URL_API}${endpoints.tips}${endpoints.findId}`,
+    `${process.env.REACT_APP_URL_API}${paths.tips}${paths.findId}`,
     async (req, res, ctx) => res(ctx.status(500))
   ),
 ];

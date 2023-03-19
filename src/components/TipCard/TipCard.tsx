@@ -5,14 +5,16 @@ import { TipCardStyled } from "./TipCardStyled";
 import { useAppSelector } from "../../store/hooks";
 import { Button } from "../Button/Button";
 import useApi from "../../hooks/useApi/useApi";
+import { Link } from "react-router-dom";
+
 interface TipsProps {
   tip: TipStructure;
 }
 
 export const TipCard = ({ tip }: TipsProps): JSX.Element => {
-  const { id } = useAppSelector((state) => state.user);
+  const { id: userId } = useAppSelector((state) => state.user);
   const { deleteTipById } = useApi();
-  const loggedUser = tip.sharedBy === id;
+  const loggedUser = tip.sharedBy === userId;
 
   const deleteIcon = (
     <FontAwesomeIcon className="card__icon" icon={solid("trash")} />
@@ -22,36 +24,39 @@ export const TipCard = ({ tip }: TipsProps): JSX.Element => {
   );
 
   return (
-    <TipCardStyled className="card">
-      <img
-        className="card__image"
-        alt={tip.commonName}
-        width="120"
-        height="120"
-        src={tip.image}
-      />
-      <div className="card__details">
-        <div className="card__text">
-          <h2 className="card__title">{tip.commonName}</h2>
-          <span className="card__scientific-name">{tip.scientificName}</span>
-          <span className="card__info">{tip.careLevel}</span>
-        </div>
-        {loggedUser && (
-          <div className="card__icons ">
-            <Button
-              className="card__button"
-              ariaLabel={"edit"}
-              icon={editIcon}
-            />
-            <Button
-              className="card__button"
-              ariaLabel={"delete"}
-              icon={deleteIcon}
-              action={() => deleteTipById(tip.id)}
-            />
+    <Link to={`/detail/${tip.id}`}>
+      <TipCardStyled className="card">
+        <img
+          className="card__image"
+          alt={tip.commonName}
+          width="120"
+          height="120"
+          src={tip.image}
+        />
+
+        <div className="card__details">
+          <div className="card__text">
+            <h2 className="card__title">{tip.commonName}</h2>
+            <span className="card__scientific-name">{tip.scientificName}</span>
+            <span className="card__info">{tip.careLevel}</span>
           </div>
-        )}
-      </div>
-    </TipCardStyled>
+          {loggedUser && (
+            <div className="card__icons ">
+              <Button
+                className="card__button"
+                ariaLabel={"edit"}
+                icon={editIcon}
+              />
+              <Button
+                className="card__button"
+                ariaLabel={"delete"}
+                icon={deleteIcon}
+                action={() => deleteTipById(tip.id)}
+              />
+            </div>
+          )}
+        </div>
+      </TipCardStyled>
+    </Link>
   );
 };

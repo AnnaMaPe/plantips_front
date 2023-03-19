@@ -1,14 +1,13 @@
 import { screen } from "@testing-library/react";
-import { maranta } from "../../mocks/tipsMocks";
 import { renderRouterWithProviders } from "../../testUtils/renderRouterWithProviders";
 import { DetailPage } from "./DetailPage";
 
 describe("Given the DetailPage page", () => {
-  describe("When it is rendered with a maranta", () => {
+  describe("When it is rendered", () => {
     test("Then it should show a heading with the title 'Maranta lemon'", () => {
-      const expectedTitle = /maranta lemon/i;
+      const expectedTitle = /light/i;
 
-      renderRouterWithProviders({}, <DetailPage tip={maranta} />);
+      renderRouterWithProviders({}, <DetailPage />);
       const heading = screen.getByRole("heading", { name: expectedTitle });
 
       expect(heading).toBeInTheDocument();

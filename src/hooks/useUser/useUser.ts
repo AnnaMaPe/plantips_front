@@ -15,8 +15,8 @@ import {
   setLoaderActioncreator,
   unsetLoaderActionCreator,
 } from "../../store/features/ui/uiSlice";
-import { endpoints } from "../../routers/endpoints";
 import useToken from "../useToken/useToken";
+import { paths } from "../../routers/paths";
 
 const useUser = (): UseUserStructure => {
   const dispatch = useAppDispatch();
@@ -27,7 +27,7 @@ const useUser = (): UseUserStructure => {
       dispatch(setLoaderActioncreator());
 
       const response = await fetch(
-        `${process.env.REACT_APP_URL_API}${endpoints.users}${endpoints.login}`,
+        `${process.env.REACT_APP_URL_API}${paths.users}${paths.login}`,
         {
           method: "POST",
           body: JSON.stringify(userCredentials),
