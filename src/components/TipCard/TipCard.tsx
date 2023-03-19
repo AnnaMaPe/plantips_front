@@ -6,6 +6,7 @@ import { useAppSelector } from "../../store/hooks";
 import { Button } from "../Button/Button";
 import useApi from "../../hooks/useApi/useApi";
 import { Link } from "react-router-dom";
+import { paths } from "../../routers/paths";
 
 interface TipsProps {
   tip: TipStructure;
@@ -24,7 +25,7 @@ export const TipCard = ({ tip }: TipsProps): JSX.Element => {
   );
 
   return (
-    <Link to={`/detail/${tip.id}`}>
+    <Link to={`${paths.detail}${paths.slash}${tip.id}`}>
       <TipCardStyled className="card">
         <img
           className="card__image"
