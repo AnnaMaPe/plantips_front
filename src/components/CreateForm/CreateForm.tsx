@@ -67,7 +67,7 @@ export const CreateForm = (): JSX.Element => {
       />
       <input
         className="form__field"
-        placeholder="Image"
+        placeholder="Image url"
         type="url"
         autoComplete="off"
         name="image"

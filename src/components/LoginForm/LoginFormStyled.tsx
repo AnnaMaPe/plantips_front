@@ -21,6 +21,10 @@ export const LoginFormStyled = styled.form`
       border: none;
     }
 
+    &__field::placeholder {
+      color: black;
+    }
+
     &__button {
       font-family: ${(props) => props.theme.fonts.text};
       background-color: ${(props) => props.theme.palette.primary};

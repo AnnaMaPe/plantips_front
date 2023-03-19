@@ -19,11 +19,17 @@ export const CreateFormStyled = styled.form`
       font-weight: 400;
       font-size: inherit;
       border: none;
+      color: black;
+    }
+
+    &__field::placeholder {
+      color: black;
     }
 
     &__select {
       padding-left: 16px;
       border-right: 20px solid transparent;
+      color: black;
     }
 
     &__tip {
