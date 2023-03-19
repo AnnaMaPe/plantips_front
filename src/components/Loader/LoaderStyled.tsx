@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const LoaderStyled = styled.div`
-  border: 1px solid red;
   position: fixed;
   display: flex;
   flex-direction: column;

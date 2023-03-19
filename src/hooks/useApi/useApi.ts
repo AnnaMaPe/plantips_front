@@ -8,7 +8,6 @@ import {
 } from "../../store/features/tips/tipsSlice";
 import {
   TipsFromApi,
-  TipStructure,
   TipStructureToBeCreated,
 } from "../../store/features/tips/types";
 import {
@@ -208,9 +207,9 @@ const useApi = () => {
           throw new Error(errorMessage);
         }
 
-        const tip = (await response.json()) as TipStructure;
+        const { tips } = (await response.json()) as TipsFromApi;
 
-        dispatch(loadTipByIdActionCreator(tip));
+        dispatch(loadTipByIdActionCreator(tips[0]));
         dispatch(unsetLoaderActionCreator());
       } catch (error: unknown) {
         dispatch(
