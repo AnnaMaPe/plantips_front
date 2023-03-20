@@ -1,7 +1,7 @@
 export interface UiState {
   isLoading: boolean;
   modal: { message: string; isError: boolean; isSuccess: boolean };
-  filter: sstring;
+  filter: string;
 }
 
 export interface ModalPayload {
