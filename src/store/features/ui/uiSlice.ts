@@ -2,9 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { ModalPayload, UiState } from "./types";
 
-const uiInitialState: UiState = {
+export const uiInitialState: UiState = {
   isLoading: false,
   modal: { isError: false, message: "", isSuccess: false },
+  filter: "",
 };
 
 const uiSlice = createSlice({
@@ -38,6 +39,10 @@ const uiSlice = createSlice({
       ...currentUiState,
       isLoading: false,
     }),
+    addFilter: (currentUiState, action: PayloadAction<string>): UiState => ({
+      ...currentUiState,
+      filter: action.payload,
+    }),
   },
 });
 
@@ -47,4 +52,5 @@ export const {
   closeModal: closeModalActionCreator,
   setLoader: setLoaderActioncreator,
   unSetLoader: unsetLoaderActionCreator,
+  addFilter: addFilterActionCreator,
 } = uiSlice.actions;

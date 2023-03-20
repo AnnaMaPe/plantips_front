@@ -4,7 +4,7 @@ import { DetailPage } from "./DetailPage";
 
 describe("Given the DetailPage page", () => {
   describe("When it is rendered", () => {
-    test("Then it should show a heading with the title 'Maranta lemon'", () => {
+    test("Then it should show a heading with the title 'light''", () => {
       const expectedTitle = /light/i;
 
       renderRouterWithProviders({}, <DetailPage />);
