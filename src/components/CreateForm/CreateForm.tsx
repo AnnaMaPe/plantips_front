@@ -80,9 +80,7 @@ export const CreateForm = (): JSX.Element => {
         aria-label="level of care required"
         onChange={handleCreateDataChange}
       >
-        <option placeholder="Level of care required" hidden>
-          Level of care required
-        </option>
+        <option hidden>Level of care required</option>
         <option value="Ideal for beginners">Ideal for beginners</option>
         <option value="Best for connoisseurs">Best for connoisseurs</option>
         <option value="Only for experts">Only for experts</option>
@@ -93,9 +91,7 @@ export const CreateForm = (): JSX.Element => {
         aria-label="light"
         onChange={handleCreateDataChange}
       >
-        <option placeholder="Light" hidden>
-          Light
-        </option>
+        <option hidden>Light</option>
         <option value="Low indirect light">Low indirect light</option>
         <option value="Low to bright indirect light">
           Low to bright indirect light
@@ -109,12 +105,10 @@ export const CreateForm = (): JSX.Element => {
         aria-label="water"
         onChange={handleCreateDataChange}
       >
-        <option placeholder="Water" hidden>
-          Water
-        </option>
+        <option hidden>Water</option>
         <option value="Every other day">Every other day</option>
         <option value="Once a week">Once a week</option>
-        <option value="Twice a wee">Twice week</option>
+        <option value="Twice a week">Twice week</option>
         <option value="Twice a month">Twice a month</option>
         <option value="Once a month">Once a month</option>
       </select>

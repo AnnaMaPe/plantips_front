@@ -14,28 +14,28 @@ export const NavBar = (): JSX.Element => {
     <NavBarStyled className="nav">
       <NavLink to={paths.slash} title="home">
         <FontAwesomeIcon
-          name="home"
+          aria-label="home"
           className="nav__icon"
           icon={faHouseChimney}
         />
       </NavLink>
       <NavLink to={paths.create} title="create tip">
         <FontAwesomeIcon
-          name="create tip"
+          aria-label="create tip"
           className="nav__icon"
           icon={solid("plus")}
         />
       </NavLink>
       <NavLink to={paths.myTips} title="my tips">
         <FontAwesomeIcon
-          name="my tips"
+          aria-label="my tips"
           className="nav__icon"
           icon={solid("clipboard-list")}
         />
       </NavLink>
       <NavLink to={paths.login} onClick={() => logoutUser()} title="log out">
         <FontAwesomeIcon
-          name="log out"
+          aria-label="log out"
           className="nav__icon"
           icon={solid("user-xmark")}
         />
