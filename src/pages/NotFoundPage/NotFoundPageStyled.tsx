@@ -12,6 +12,10 @@ export const NotFoundPageStyled = styled.div`
   min-height: 100vh;
 
   .not-found {
+    &__image {
+      align-self: center;
+      margin: 30px;
+    }
     &__title {
       font-size: 100px;
     }
@@ -20,7 +24,7 @@ export const NotFoundPageStyled = styled.div`
     }
     &__text {
       font-size: 25px;
-      margin-top: 30px;
+      margin-top: 40px;
     }
     &__link {
       text-decoration: underline;
