@@ -6,12 +6,14 @@ import { DetailPage } from "../pages/DetailPage/DetailPage";
 import { HomePage } from "../pages/HomePage/HomePage";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import { MyTipsPage } from "../pages/MyTipsPage/MyTipsPage";
+import { NotFoundPage } from "../pages/NotFoundPage/NotFoundPage";
 import { paths } from "./paths";
 
 const routes: RouteObject[] = [
   {
     path: paths.slash,
     element: <App />,
+    errorElement: <NotFoundPage />,
     children: [
       { path: paths.slash, element: <ProtectedRoute element={<HomePage />} /> },
       { path: paths.login, element: <LoginPage /> },
