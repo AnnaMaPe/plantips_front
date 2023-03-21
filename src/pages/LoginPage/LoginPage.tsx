@@ -12,7 +12,7 @@ const LoginPage = (): JSX.Element => {
     <LoginPageStyled className="login">
       <img
         className="login__photo"
-        src="../images/login_photo.webp"
+        src="/images/login_photo.webp"
         alt="Monstera plant"
         width="360"
         height="161"
