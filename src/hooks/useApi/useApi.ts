@@ -22,42 +22,53 @@ const useApi = () => {
   const { token } = useAppSelector((state) => state.user);
   const navigateTo = useNavigate();
 
-  const loadAllTips = useCallback(async () => {
-    try {
-      dispatch(setLoaderActioncreator());
+  const loadAllTips = useCallback(
+    async (filter?: string) => {
+      try {
+        dispatch(setLoaderActioncreator());
+        let url;
 
-      const response = await fetch(
-        `${process.env.REACT_APP_URL_API}${paths.tips}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+        if (filter) {
+          url = `${process.env.REACT_APP_URL_API}${paths.tips}/${filter}`;
+        } else {
+          url = `${process.env.REACT_APP_URL_API}${paths.tips}`;
         }
-      );
 
-      if (!response.ok) {
-        const errorMessage = "Not possible to load Tips";
+        const response = await fetch(
+          url,
 
-        throw new Error(errorMessage);
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          const errorMessage = "Not possible to load Tips";
+
+          throw new Error(errorMessage);
+        }
+        const { tips } = (await response.json()) as TipsFromApi;
+
+        dispatch(loadAllTipsActionCreator(tips));
+        dispatch(unsetLoaderActionCreator());
+      } catch (error: unknown) {
+        const errorMessage = (error as Error).message;
+        dispatch(unsetLoaderActionCreator());
+        dispatch(
+          openModalActionCreator({
+            isError: true,
+            message: errorMessage,
+            isSuccess: false,
+          })
+        );
       }
-      const { tips } = (await response.json()) as TipsFromApi;
-
-      dispatch(loadAllTipsActionCreator(tips));
-      dispatch(unsetLoaderActionCreator());
-    } catch (error: unknown) {
-      const errorMessage = (error as Error).message;
-      dispatch(unsetLoaderActionCreator());
-      dispatch(
-        openModalActionCreator({
-          isError: true,
-          message: errorMessage,
-          isSuccess: false,
-        })
-      );
-    }
-  }, [dispatch, token]);
+    },
+    [dispatch, token]
+  );
 
   const loadMyTips = useCallback(async () => {
     try {

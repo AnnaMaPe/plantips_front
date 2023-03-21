@@ -34,7 +34,22 @@ describe("Given the useApi custom hook", () => {
         },
       } = renderHook(() => useApi(), { wrapper: Wrapper });
 
-      await loadAllTips();
+      await loadAllTips("");
+
+      expect(dispatchSpy).toHaveBeenCalledWith(
+        loadAllTipsActionCreator(mockListOfTips)
+      );
+    });
+  });
+  describe("When the loadAllTips function is called with the filter 'Best for connoisseurs'", () => {
+    test("Then it should call the dispatch method", async () => {
+      const {
+        result: {
+          current: { loadAllTips },
+        },
+      } = renderHook(() => useApi(), { wrapper: Wrapper });
+
+      await loadAllTips("Best-for-connoisseurs");
 
       expect(dispatchSpy).toHaveBeenCalledWith(
         loadAllTipsActionCreator(mockListOfTips)
@@ -103,7 +118,10 @@ describe("Given the useApi custom hook", () => {
 
       await loadMyTips();
 
-      expect(dispatchSpy).toHaveBeenCalledWith(openModalActionCreator(modal));
+      expect(dispatchSpy).toHaveBeenNthCalledWith(
+        3,
+        openModalActionCreator(modal)
+      );
     });
   });
 
