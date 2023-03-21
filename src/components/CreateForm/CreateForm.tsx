@@ -81,9 +81,9 @@ export const CreateForm = (): JSX.Element => {
         onChange={handleCreateDataChange}
       >
         <option hidden>Level of care required</option>
-        <option value="Ideal for beginners">Ideal for beginners</option>
-        <option value="Best for connoisseurs">Best for connoisseurs</option>
-        <option value="Only for experts">Only for experts</option>
+        <option value="ideal-for-beginners">Ideal for beginners</option>
+        <option value="best-for-connoisseurs">Best for connoisseurs</option>
+        <option value="only-for-experts">Only for experts</option>
       </select>
       <select
         className="form__field form__select"

@@ -40,6 +40,10 @@ export const DetailTipCardStyled = styled.article`
       margin-top: 15px;
     }
 
+    &__care:first-letter {
+      text-transform: capitalize;
+    }
+
     &__info {
       margin-top: 20px;
     }
