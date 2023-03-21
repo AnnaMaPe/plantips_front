@@ -15,9 +15,18 @@ const routes: RouteObject[] = [
     children: [
       { path: paths.slash, element: <ProtectedRoute element={<HomePage />} /> },
       { path: paths.login, element: <LoginPage /> },
-      { path: paths.myTips, element: <MyTipsPage /> },
-      { path: paths.create, element: <CreatePage /> },
-      { path: `${paths.detail}${paths.findId}`, element: <DetailPage /> },
+      {
+        path: paths.myTips,
+        element: <ProtectedRoute element={<MyTipsPage />} />,
+      },
+      {
+        path: paths.create,
+        element: <ProtectedRoute element={<CreatePage />} />,
+      },
+      {
+        path: `${paths.detail}${paths.findId}`,
+        element: <ProtectedRoute element={<DetailPage />} />,
+      },
     ],
   },
 ];
