@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Filter } from "../../components/Filter/Filter";
 import { TipsList } from "../../components/TipsList/TipsList";
 import useApi from "../../hooks/useApi/useApi";
 import { HomePageStyled } from "./HomePageStyled";
@@ -18,6 +19,7 @@ export const HomePage = (): JSX.Element => {
           Check out the best tips from other users to make your plants grow!
         </span>
       </div>
+      <Filter />
       <TipsList />
     </HomePageStyled>
   );
