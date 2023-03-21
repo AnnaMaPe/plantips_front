@@ -5,7 +5,7 @@ export const TipCardStyled = styled.article`
   justify-content: space-between;
   margin: 10px;
   max-width: 100vw;
-  max-height: 120px;
+  max-height: 200px;
 
   .card {
     &__image {
