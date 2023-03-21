@@ -9,6 +9,7 @@ interface Paths {
   findId: string;
   create: string;
   detail: string;
+  filter: string;
 }
 
 export const paths: Paths = {
@@ -22,4 +23,5 @@ export const paths: Paths = {
   findId: "/:id",
   create: "/create",
   detail: "/tip",
+  filter: "/:filter",
 };
