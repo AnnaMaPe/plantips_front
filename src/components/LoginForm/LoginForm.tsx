@@ -49,7 +49,7 @@ const LoginForm = (): JSX.Element => {
       />
       <img
         src="../images/logoBig.webp"
-        alt="Plantip logo"
+        alt="Plantips logo"
         width={100}
         height={100}
       />
