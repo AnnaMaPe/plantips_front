@@ -21,7 +21,9 @@ export const DetailTipCard = ({ tip }: DetailProps): JSX.Element => {
           alt={tip.commonName}
         ></img>
       </div>
-      <span className="detail__care">{tip.careLevel}</span>
+      <span className="detail__care">
+        {tip.careLevel.replace(/[^\w\s]/gi, " ")}
+      </span>
       <div className="detail__info info">
         <h2 className="info__title">Light</h2>
         <p className="info__text">It requires {tip.light}</p>

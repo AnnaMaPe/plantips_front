@@ -3,8 +3,6 @@ import { paths } from "../routers/paths";
 
 import { tipsFromApi } from "./tipsMocks";
 
-const filter = "Best-for-connoisseurs";
-
 export const handlers = [
   rest.post(
     `${process.env.REACT_APP_URL_API}${paths.users}${paths.login}`,
@@ -15,10 +13,7 @@ export const handlers = [
     `${process.env.REACT_APP_URL_API}${paths.tips}`,
     async (req, res, ctx) => res(ctx.status(200), ctx.json(tipsFromApi))
   ),
-  rest.get(
-    `${process.env.REACT_APP_URL_API}${paths.tips}/${filter}`,
-    async (req, res, ctx) => res(ctx.status(200), ctx.json(tipsFromApi))
-  ),
+
   rest.get(
     `${process.env.REACT_APP_URL_API}${paths.tips}${paths.myTips}`,
     async (req, res, ctx) => res(ctx.status(200), ctx.json(tipsFromApi))

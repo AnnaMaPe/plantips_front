@@ -40,7 +40,9 @@ export const TipCard = ({ tip }: TipsProps): JSX.Element => {
           <div className="card__text">
             <h2 className="card__title">{tip.commonName}</h2>
             <span className="card__scientific-name">{tip.scientificName}</span>
-            <span className="card__info">{tip.careLevel}</span>
+            <span className="card__info">
+              {tip.careLevel.replace(/[^\w\s]/gi, " ")}
+            </span>
           </div>
         </Link>
         {loggedUser && (
