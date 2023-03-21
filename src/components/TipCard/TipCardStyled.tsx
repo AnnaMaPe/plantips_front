@@ -26,6 +26,7 @@ export const TipCardStyled = styled.article`
       flex-direction: column;
       font-family: ${(props) => props.theme.fonts.text};
     }
+
     & __title {
       font-size: 20px;
       font-weight: 700;
@@ -36,6 +37,10 @@ export const TipCardStyled = styled.article`
     }
     &__info {
       font-size: 17px;
+    }
+
+    &__info:first-letter {
+      text-transform: capitalize;
     }
     &__icons {
       display: flex;

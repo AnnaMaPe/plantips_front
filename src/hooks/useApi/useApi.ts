@@ -29,7 +29,9 @@ const useApi = () => {
         let url;
 
         if (filter) {
-          url = `${process.env.REACT_APP_URL_API}${paths.tips}/${filter}`;
+          url =
+            `${process.env.REACT_APP_URL_API}${paths.tips}?` +
+            new URLSearchParams({ careLevel: filter });
         } else {
           url = `${process.env.REACT_APP_URL_API}${paths.tips}`;
         }

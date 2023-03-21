@@ -20,7 +20,7 @@ export const maranta: TipStructure = {
   id: "23242424334",
   commonName: "Maranta lemon",
   scientificName: "Epipemnum aureum",
-  careLevel: "Only for experts",
+  careLevel: "only-for-experts",
   light: "Low indirect light",
   water: "Every other day",
   tip: "Its leaves rise during the night, if you see that it stops doing so, it is time to water your Maranta!",
@@ -37,7 +37,7 @@ export const tipsFromApi: TipsFromApi = {
 export const marantaToBeCreated = {
   commonName: "Maranta lemon",
   scientificName: "Epipemnum aureum",
-  careLevel: "Only for experts",
+  careLevel: "only-for-experts",
   light: "Low indirect light",
   water: "Every other day",
   tip: "Its leaves rise during the night, if you see that it stops doing so, it is time to water your Maranta!",
