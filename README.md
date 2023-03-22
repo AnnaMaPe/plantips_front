@@ -28,6 +28,7 @@ It is built using React, Redux toolkit, styled components, and tested using Jest
 ![Jest](https://img.shields.io/badge/-Jest-C21325?style=flat-square&logo=jest&logoColor=white)
 ![React Testing Library](https://img.shields.io/badge/-React_Testing_Library-990000?style=flat-square&logo=react-testing-library&logoColor=white)
 ![Styled Components](https://img.shields.io/badge/-Styled_Components-DB7093?style=flat-square&logo=styled-components&logoColor=white)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/24c75094-9f67-4a1d-9c4f-b4469d0ea9a0/deploy-status)](https://app.netlify.com/sites/anna-marrodan-final-project-202301/deploys)
 
 - React: frontend library for building web applications
 - Redux Toolkit: a library that provides a simple and efficient way to manage application state
@@ -45,13 +46,14 @@ It is built using React, Redux toolkit, styled components, and tested using Jest
 To get started using Plantips, you'll need to have the following tools installed:
 
 - Node.js
-- React
-- Redux Tool Kit
+- Clone the repository and install all the needed dependencies using _npm install_
+
+This is a full stack project, you can find the backend code here: [Platips back end project](https://anna-marrodan-final-project-202301.netlify.app/login)
 
 ## Running Tests
 
-Plantips uses Jest for unit and integration tests. To run the test suite, use the npm test command.
+Plantips uses Jest for unit and integration tests. To run the test suite, use the _npm test_ command.
 
 ## Deployment
 
-To deploy Plantips to a production environment, run the npm run build command to build a production-ready version of the app. This will generate a build directory containing the compiled code, which you can then serve using a static file server. You can also deploy the app to Netlify or any other hosting service of your choice.
+To deploy Plantips to a production environment, run the npm _run build_ command to build a production-ready version of the app. This will generate a build directory containing the compiled code, which you can then serve using a static file server.
