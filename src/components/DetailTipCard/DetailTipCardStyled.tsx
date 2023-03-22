@@ -57,8 +57,12 @@ export const DetailTipCardStyled = styled.article`
     }
     &__text {
       margin-bottom: 10px;
+      text-transform: lowercase;
     }
     &__text:first-letter {
+      text-transform: capitalize;
+    }
+    &__tip:first-letter {
       text-transform: capitalize;
     }
   }

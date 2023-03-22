@@ -32,7 +32,7 @@ export const DetailTipCard = ({ tip }: DetailProps): JSX.Element => {
         <p className="info__text">It needs to be watered {tip.water}</p>
 
         <h2 className="info__title">User's tip</h2>
-        <p className="info__text">{tip.tip}</p>
+        <p className="info__tip">{tip.tip}</p>
       </div>
     </DetailTipCardStyled>
   );
