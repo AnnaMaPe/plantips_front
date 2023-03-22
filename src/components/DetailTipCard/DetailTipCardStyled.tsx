@@ -56,7 +56,6 @@ export const DetailTipCardStyled = styled.article`
       text-decoration: underline;
     }
     &__text {
-      text-transform: lowercase;
       margin-bottom: 10px;
     }
     &__text:first-letter {
