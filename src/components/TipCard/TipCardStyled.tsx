@@ -34,7 +34,12 @@ export const TipCardStyled = styled.article`
     &__scientific-name {
       font-style: italic;
       font-size: 18px;
+      text-transform: lowercase;
     }
+    &__scientific-name:first-letter {
+      text-transform: capitalize;
+    }
+
     &__info {
       font-size: 17px;
     }
