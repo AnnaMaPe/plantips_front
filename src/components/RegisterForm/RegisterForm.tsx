@@ -1,8 +1,9 @@
 import { Button } from "../Button/Button";
+import { FormStyled } from "../shared/FormStyled";
 
 export const RegisterForm = (): React.ReactElement => {
   return (
-    <form>
+    <FormStyled>
       <input
         className="form__field"
         placeholder="Username"
@@ -34,6 +35,6 @@ export const RegisterForm = (): React.ReactElement => {
         height={100}
       />
       <Button className="form__button" text="Register" />
-    </form>
+    </FormStyled>
   );
 };
