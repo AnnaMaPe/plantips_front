@@ -9,7 +9,7 @@ jest.mock("react-router-dom", () => ({
   Navigate: jest.fn(),
 }));
 
-describe("Given a LoginPage component", () => {
+describe("Given a LoginPage page", () => {
   describe("When it is rendered", () => {
     test("Then it should show a heading with the title 'PlanTips'", () => {
       const loginPageTitle = /plantips/i;
