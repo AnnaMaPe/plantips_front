@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useUser from "../../hooks/useUser/useUser";
 import { Button } from "../Button/Button";
-import { LoginFormStyled } from "./LoginFormStyled";
+import { FormStyled } from "../shared/FormStyled";
 
 const LoginForm = (): JSX.Element => {
   const { loginUser } = useUser();
@@ -28,7 +28,7 @@ const LoginForm = (): JSX.Element => {
   const isDisabled = loginData.username === "" || loginData.password === "";
 
   return (
-    <LoginFormStyled className="form" onSubmit={onSubmitHandler}>
+    <FormStyled className="form" onSubmit={onSubmitHandler}>
       <input
         className="form__field"
         placeholder="Username"
@@ -54,7 +54,7 @@ const LoginForm = (): JSX.Element => {
         height={100}
       />
       <Button className="form__button" isDisabled={isDisabled} text="Log in" />
-    </LoginFormStyled>
+    </FormStyled>
   );
 };
 
