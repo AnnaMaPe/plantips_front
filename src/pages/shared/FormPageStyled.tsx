@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const LoginPageStyled = styled.div`
+const FormPageStyled = styled.div`
   display: flex;
   flex-direction: column;
   color: ${(props) => props.theme.palette.primary};
@@ -12,7 +12,8 @@ const LoginPageStyled = styled.div`
   min-height: 100%;
   padding-top: 100px;
 
-  .login {
+  .login,
+  .register {
     &__photo {
       width: 100%;
       object-fit: cover;
@@ -33,4 +34,4 @@ const LoginPageStyled = styled.div`
   }
 `;
 
-export default LoginPageStyled;
+export default FormPageStyled;

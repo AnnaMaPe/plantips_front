@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import { useAppSelector } from "../../store/hooks";
-import LoginPageStyled from "./LoginPageStyled";
+import FormPageStyled from "../shared/FormPageStyled";
 
 const LoginPage = (): JSX.Element => {
   const { isLogged } = useAppSelector((state) => state.user);
@@ -9,7 +9,7 @@ const LoginPage = (): JSX.Element => {
   return isLogged ? (
     <Navigate to={"/"} replace={true} />
   ) : (
-    <LoginPageStyled className="login">
+    <FormPageStyled className="login">
       <img
         className="login__photo"
         src="/images/login_photo.webp"
@@ -24,7 +24,7 @@ const LoginPage = (): JSX.Element => {
       </span>
       <LoginForm />
       <span className="login__info">need an account?</span>
-    </LoginPageStyled>
+    </FormPageStyled>
   );
 };
 
