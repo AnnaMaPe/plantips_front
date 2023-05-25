@@ -14,7 +14,7 @@ export const RegisterForm = (): React.ReactElement => {
       />
       <input
         className="form__field"
-        placeholder="email"
+        placeholder="E-mail"
         type="email"
         autoComplete="off"
         name="email"
@@ -22,11 +22,11 @@ export const RegisterForm = (): React.ReactElement => {
       />
       <input
         className="form__field"
-        placeholder="Username"
-        type="text"
+        placeholder="Password"
+        type="password"
         autoComplete="off"
-        name="username"
-        aria-label="username"
+        name="password"
+        aria-label="passsword"
       />
       <img
         src="../images/logoBig.webp"
