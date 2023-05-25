@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LoginFormStyled = styled.form`
+export const FormStyled = styled.form`
   font-family: ${(props) => props.theme.fonts.text};
   display: flex;
   flex-direction: column;
@@ -19,10 +19,6 @@ export const LoginFormStyled = styled.form`
       font-weight: 400;
       font-size: inherit;
       border: none;
-    }
-
-    &__field::placeholder {
-      color: black;
     }
 
     &__button {

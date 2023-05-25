@@ -103,6 +103,7 @@ describe("Given the useApi custom hook", () => {
     beforeEach(() => {
       server.resetHandlers(...errorHandlers);
     });
+
     test("Then it should call the dispatch with the openModalActionCreator to show an error modal with the text 'Not possible to load your Tips'", async () => {
       const {
         result: {
