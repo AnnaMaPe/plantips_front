@@ -2,7 +2,11 @@ import { renderHook } from "@testing-library/react";
 import useUser from "./useUser";
 import { Wrapper } from "../../mocks/Wrapper";
 import { store } from "../../store";
-import { CustomTokenPayload, UserCredentials } from "../useUser/types";
+import {
+  CustomTokenPayload,
+  UserCredentials,
+  UserRegisterCredentials,
+} from "../useUser/types";
 import decodeToken from "jwt-decode";
 import { loginUserActionCreator } from "../../store/features/user/userSlice";
 import { User } from "../../store/features/user/types";
@@ -96,6 +100,65 @@ describe("Given the useUser custom hook", () => {
       };
 
       expect(dispatchSpy).toHaveBeenCalledWith(openModalActionCreator(modal));
+    });
+
+    describe("When the registerUser function is called with the user 'plantLover' and its credentials", () => {
+      const mockedRegisterUser: UserRegisterCredentials = {
+        ...mockedUserCredentials,
+        email: "plant.lover@gmail.com",
+      };
+
+      test("Then it should call the dispatch to show a succes modal with the message 'You were succesfully registered'", async () => {
+        const {
+          result: {
+            current: { registerUser },
+          },
+        } = renderHook(() => useUser(), { wrapper: Wrapper });
+
+        await registerUser(mockedRegisterUser);
+
+        const successModal: ModalPayload = {
+          isError: false,
+          isSuccess: true,
+          message: "You were succesfully registered",
+        };
+
+        expect(dispatchSpy).toHaveBeenNthCalledWith(
+          3,
+          openModalActionCreator(successModal)
+        );
+      });
+
+      describe("When the registerUser function is called with an empty username", () => {
+        beforeEach(() => {
+          server.resetHandlers(...errorHandlers);
+        });
+        test("The it should call the dispatch method with an error modal with the message 'User was not created. Try again!'", async () => {
+          const mockedNonRegisterUser: UserRegisterCredentials = {
+            ...mockedRegisterUser,
+            username: "",
+          };
+
+          const {
+            result: {
+              current: { registerUser },
+            },
+          } = renderHook(() => useUser(), { wrapper: Wrapper });
+
+          await registerUser(mockedNonRegisterUser);
+
+          const errorModal: ModalPayload = {
+            isError: true,
+            isSuccess: false,
+            message: "User was not created. Try again!",
+          };
+
+          expect(dispatchSpy).toHaveBeenNthCalledWith(
+            2,
+            openModalActionCreator(errorModal)
+          );
+        });
+      });
     });
   });
 });
