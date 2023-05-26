@@ -8,6 +8,7 @@ import {
   CustomTokenPayload,
   LoginResponse,
   UserCredentials,
+  UserRegisterCredentials,
   UseUserStructure,
 } from "./types";
 import {
@@ -65,6 +66,7 @@ const useUser = (): UseUserStructure => {
       );
     }
   };
+
   const logoutUser = () => {
     deleteToken();
     dispatch(logoutUserActionCreator());
@@ -76,7 +78,51 @@ const useUser = (): UseUserStructure => {
       })
     );
   };
-  return { loginUser, logoutUser };
+
+  const registerUser = async (userCredentials: UserRegisterCredentials) => {
+    dispatch(setLoaderActioncreator());
+
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_URL_API}${paths.users}${paths.register}`,
+        {
+          method: "POST",
+          body: JSON.stringify(userCredentials),
+          headers: { "Content-type": "application/json" },
+        }
+      );
+
+      if (!response.ok) {
+        const wrongCredentials = "User was not created. Try again!";
+
+        const wrongCredentialsError = new Error(wrongCredentials);
+
+        throw wrongCredentialsError;
+      }
+
+      dispatch(unsetLoaderActionCreator());
+
+      dispatch(
+        openModalActionCreator({
+          isError: false,
+          message: "You were succesfully registered",
+          isSuccess: true,
+        })
+      );
+    } catch (error: unknown) {
+      const errorMessage = (error as Error).message;
+
+      dispatch(
+        openModalActionCreator({
+          isError: true,
+          message: errorMessage,
+          isSuccess: false,
+        })
+      );
+    }
+  };
+
+  return { loginUser, logoutUser, registerUser };
 };
 
 export default useUser;
