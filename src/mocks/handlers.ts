@@ -9,11 +9,14 @@ export const handlers = [
     async (req, res, ctx) =>
       res(ctx.status(200), ctx.json({ token: "ThisIsAToken" }))
   ),
+  rest.post(
+    `${process.env.REACT_APP_URL_API}${paths.users}${paths.register}`,
+    async (req, res, ctx) => res(ctx.status(201))
+  ),
   rest.get(
     `${process.env.REACT_APP_URL_API}${paths.tips}`,
     async (req, res, ctx) => res(ctx.status(200), ctx.json(tipsFromApi))
   ),
-
   rest.get(
     `${process.env.REACT_APP_URL_API}${paths.tips}${paths.myTips}`,
     async (req, res, ctx) => res(ctx.status(200), ctx.json(tipsFromApi))
@@ -37,12 +40,14 @@ export const errorHandlers = [
     `${process.env.REACT_APP_URL_API}${paths.users}${paths.login}`,
     async (req, res, ctx) => res(ctx.status(400))
   ),
-
+  rest.post(
+    `${process.env.REACT_APP_URL_API}${paths.users}${paths.register}`,
+    async (req, res, ctx) => res(ctx.status(500))
+  ),
   rest.get(
     `${process.env.REACT_APP_URL_API}${paths.tips}`,
     async (req, res, ctx) => res(ctx.status(500))
   ),
-
   rest.get(
     `${process.env.REACT_APP_URL_API}${paths.tips}${paths.myTips}`,
     async (req, res, ctx) => res(ctx.status(500))
