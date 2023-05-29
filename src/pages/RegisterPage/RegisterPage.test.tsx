@@ -1,6 +1,13 @@
 import { screen } from "@testing-library/react";
+import * as ReactRouterDom from "react-router-dom";
 import { renderWithProviders } from "../../testUtils/renderWithProviders";
 import RegisterPage from "./RegisterPage";
+import { userIsLoggedState } from "../../mocks/userPreloadedState";
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  Navigate: jest.fn(),
+}));
 
 describe("Give a RegisterPage page", () => {
   describe("When it is rendered", () => {
@@ -25,5 +32,13 @@ describe("Give a RegisterPage page", () => {
     const image = screen.getByAltText(expectedAltText);
 
     expect(image).toBeInTheDocument();
+  });
+
+  describe("When the user is logged in", () => {
+    test("Then 'Navigate' should be called", () => {
+      renderWithProviders(<RegisterPage />, { user: userIsLoggedState });
+
+      expect(ReactRouterDom.Navigate).toHaveBeenCalled();
+    });
   });
 });
