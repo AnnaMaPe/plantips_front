@@ -1,8 +1,14 @@
+import { Navigate } from "react-router-dom";
 import { RegisterForm } from "../../components/RegisterForm/RegisterForm";
+import { useAppSelector } from "../../store/hooks";
 import FormPageStyled from "../shared/FormPageStyled";
 
 const RegisterPage = (): JSX.Element => {
-  return (
+  const { isLogged } = useAppSelector((state) => state.user);
+
+  return isLogged ? (
+    <Navigate to={"/"} replace={true} />
+  ) : (
     <FormPageStyled>
       <img
         className="register__photo"
