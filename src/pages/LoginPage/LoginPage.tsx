@@ -1,7 +1,8 @@
-import { Navigate } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import { useAppSelector } from "../../store/hooks";
 import FormPageStyled from "../shared/FormPageStyled";
+import { paths } from "../../routers/paths";
 
 const LoginPage = (): JSX.Element => {
   const { isLogged } = useAppSelector((state) => state.user);
@@ -23,7 +24,9 @@ const LoginPage = (): JSX.Element => {
         Check the latest tips from our leafy community!
       </span>
       <LoginForm />
-      <span className="login__info">need an account?</span>
+      <NavLink className="register__info" to={paths.register}>
+        Need an account?
+      </NavLink>
     </FormPageStyled>
   );
 };

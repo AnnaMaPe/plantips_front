@@ -5,7 +5,6 @@ export const NavBarStyled = styled.nav`
   display: flex;
   justify-content: space-between;
   flex: 1;
-
   color: ${(props) => props.theme.palette.primary};
 
   .active {

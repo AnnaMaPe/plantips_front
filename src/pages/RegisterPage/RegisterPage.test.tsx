@@ -2,7 +2,11 @@ import { screen } from "@testing-library/react";
 import * as ReactRouterDom from "react-router-dom";
 import { renderWithProviders } from "../../testUtils/renderWithProviders";
 import RegisterPage from "./RegisterPage";
-import { userIsLoggedState } from "../../mocks/userPreloadedState";
+import {
+  preloadedIsLoggedUser,
+  preloadedNotLogedUser,
+} from "../../mocks/userPreloadedState";
+import { renderRouterWithProviders } from "../../testUtils/renderRouterWithProviders";
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
@@ -14,7 +18,10 @@ describe("Give a RegisterPage page", () => {
     test("Then it should show a title with the text 'PlanTips'", () => {
       const expectedText = /plantips/i;
 
-      renderWithProviders(<RegisterPage />);
+      renderRouterWithProviders(
+        { user: preloadedNotLogedUser },
+        <RegisterPage />
+      );
 
       const heading = screen.getByRole("heading", {
         name: expectedText,
@@ -27,7 +34,10 @@ describe("Give a RegisterPage page", () => {
   test("Then it should show an image with the alt text 'Calathea plan'", () => {
     const expectedAltText = /calathea plant/i;
 
-    renderWithProviders(<RegisterPage />);
+    renderRouterWithProviders(
+      { user: preloadedNotLogedUser },
+      <RegisterPage />
+    );
 
     const image = screen.getByAltText(expectedAltText);
 
@@ -36,7 +46,7 @@ describe("Give a RegisterPage page", () => {
 
   describe("When the user is logged in", () => {
     test("Then 'Navigate' should be called", () => {
-      renderWithProviders(<RegisterPage />, { user: userIsLoggedState });
+      renderWithProviders(<RegisterPage />, { user: preloadedIsLoggedUser });
 
       expect(ReactRouterDom.Navigate).toHaveBeenCalled();
     });
