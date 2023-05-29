@@ -18,10 +18,12 @@ import {
 } from "../../store/features/ui/uiSlice";
 import useToken from "../useToken/useToken";
 import { paths } from "../../routers/paths";
+import { useNavigate } from "react-router-dom";
 
 const useUser = (): UseUserStructure => {
   const dispatch = useAppDispatch();
   const { deleteToken } = useToken();
+  const navigateTo = useNavigate();
 
   const loginUser = async (userCredentials: UserCredentials) => {
     try {
@@ -101,6 +103,8 @@ const useUser = (): UseUserStructure => {
       }
 
       dispatch(unsetLoaderActionCreator());
+
+      navigateTo(paths.login);
 
       dispatch(
         openModalActionCreator({
