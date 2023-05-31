@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import { monstera } from "../../mocks/tipsMocks";
-import { userIsLoggedState } from "../../mocks/userPreloadedState";
+import { preloadedIsLoggedUser } from "../../mocks/userPreloadedState";
 import { renderRouterWithProviders } from "../../testUtils/renderRouterWithProviders";
 import { TipCard } from "./TipCard";
 import userEvent from "@testing-library/user-event";
@@ -17,7 +17,7 @@ describe("Given a TipCard component", () => {
       const expectedLabel = /delete/i;
 
       renderRouterWithProviders(
-        { user: userIsLoggedState },
+        { user: preloadedIsLoggedUser },
         <TipCard tip={monstera} />
       );
       const button = screen.getByRole("button", { name: expectedLabel });
@@ -31,7 +31,7 @@ describe("Given a TipCard component", () => {
       const buttonText = /delete/i;
 
       renderRouterWithProviders(
-        { user: userIsLoggedState },
+        { user: preloadedIsLoggedUser },
         <TipCard tip={monstera} />
       );
       const button = screen.getByRole("button", { name: buttonText });

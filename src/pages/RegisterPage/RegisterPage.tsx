@@ -1,7 +1,15 @@
+import { NavLink, Navigate } from "react-router-dom";
+import { RegisterForm } from "../../components/RegisterForm/RegisterForm";
+import { useAppSelector } from "../../store/hooks";
 import FormPageStyled from "../shared/FormPageStyled";
+import { paths } from "../../routers/paths";
 
 const RegisterPage = (): JSX.Element => {
-  return (
+  const { isLogged } = useAppSelector((state) => state.user);
+
+  return isLogged ? (
+    <Navigate to={paths.slash} replace={true} />
+  ) : (
     <FormPageStyled>
       <img
         className="register__photo"
@@ -13,7 +21,11 @@ const RegisterPage = (): JSX.Element => {
       <span className="register__introduction">welcome to</span>
       <h1 className="register__title">PlanTips</h1>
       <span className="register_sub-title">Join our leafy community!</span>
-      <span className="register__info">Already have an account?</span>
+      <RegisterForm />
+
+      <NavLink className="register__info" to={paths.login}>
+        Already have an account?
+      </NavLink>
     </FormPageStyled>
   );
 };

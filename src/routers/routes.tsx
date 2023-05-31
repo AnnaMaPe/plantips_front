@@ -8,6 +8,7 @@ import LoginPage from "../pages/LoginPage/LoginPage";
 import { MyTipsPage } from "../pages/MyTipsPage/MyTipsPage";
 import { NotFoundPage } from "../pages/NotFoundPage/NotFoundPage";
 import { paths } from "./paths";
+import RegisterPage from "../pages/RegisterPage/RegisterPage";
 
 const routes: RouteObject[] = [
   {
@@ -17,6 +18,7 @@ const routes: RouteObject[] = [
     children: [
       { path: paths.slash, element: <ProtectedRoute element={<HomePage />} /> },
       { path: paths.login, element: <LoginPage /> },
+      { path: paths.register, element: <RegisterPage /> },
       {
         path: paths.myTips,
         element: <ProtectedRoute element={<MyTipsPage />} />,

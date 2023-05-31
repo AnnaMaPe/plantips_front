@@ -15,6 +15,12 @@ import { errorHandlers } from "../../mocks/handlers";
 import { ModalPayload } from "../../store/features/ui/types";
 import { openModalActionCreator } from "../../store/features/ui/uiSlice";
 
+const mockedUsedNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockedUsedNavigate,
+}));
+
 jest.mock("jwt-decode", () => jest.fn());
 
 beforeAll(() => {
